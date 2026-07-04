@@ -1,0 +1,59 @@
+import { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import Draggable from "react-draggable";
+import { Button } from "@/components/ui/button";
+
+pdfjs.GlobalWorkerOptions.workerSrc = 
+  `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+
+export default function PDFImageEditor() {
+  const [pdfFile, setPdfFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [numPages, setNumPages] = useState(null);
+  const [imagePosition, setImagePosition] = useState({ x: 50, y: 50 });
+
+  const onPdfUpload = (e) => {
+    setPdfFile(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const onImageUpload = (e) => {
+    setImageFile(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleDrag = (e, data) => {
+    setImagePosition({ x: data.x, y: data.y });
+  };
+
+  const handleSave = async () => {
+    const formData = new FormData();
+    formData.append("pdf", pdfFile);
+    formData.append("image", imageFile);
+    formData.append("x", imagePosition.x);
+    formData.append("y", imagePosition.y);
+
+    await fetch("http://localhost:5000/save", {
+      method: "POST",
+      body: formData,
+    });
+  };
+
+  return (
+    <div className="flex flex-col items-center p-4">
+      <input type="file" accept="application/pdf" onChange={onPdfUpload} />
+      <input type="file" accept="image/*" onChange={onImageUpload} />
+      <div className="relative w-[500px] h-[700px] border mt-4">
+        {pdfFile && (
+          <Document file={pdfFile} onLoadSuccess={({ numPages }) => setNumPages(numPages)}>
+            <Page pageNumber={1} width={500} />
+          </Document>
+        )}
+        {imageFile && (
+          <Draggable onDrag={handleDrag} position={imagePosition}>
+            <img src={imageFile} alt="Uploaded" className="absolute w-20 h-20" />
+          </Draggable>
+        )}
+      </div>
+      <Button onClick={handleSave} className="mt-4">Save</Button>
+    </div>
+  );
+}

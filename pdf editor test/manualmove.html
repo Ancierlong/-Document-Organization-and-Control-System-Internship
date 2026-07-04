@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Generator</title>
+    <script src="https://unpkg.com/pdf-lib"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js";
+    </script>
+    <style>
+        .canvas-container {
+            position: relative;
+            display: inline-block;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>PDF Generator using PDF-Lib</h2>
+    
+    <label>Choose an option:</label>
+    <select id="pdfOption" onchange="handlePDFOption()">
+        <option value="generate">Generate New PDF</option>
+        <option value="upload">Upload Existing PDF</option>
+    </select>
+    
+    <div id="uploadSection" style="display:none;">
+        <input type="file" id="pdfUpload" accept="application/pdf" onchange="loadPDF()">
+    </div>
+    
+    <div id="imageSection" style="display:none;">
+        <label>Attach an Image?</label>
+        <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
+        <br>
+        <label>Page:</label>
+        <select id="pageSelect" onchange="renderPDFPage()"></select>
+        <br>
+        <label>X Position:</label>
+        <input type="number" id="xPos" value="0" oninput="previewImage()">
+        <label>Y Position:</label>
+        <input type="number" id="yPos" value="0" oninput="previewImage()">
+        <br>
+        <button onclick="processPDF()">Proceed</button>
+    </div>
+    
+    <div class="canvas-container" style="display:none;">
+        <canvas id="pdfCanvas"></canvas>
+        <canvas id="imageCanvas"></canvas>
+    </div>
+    
+    
+    <script>
+        let loadedPdfDoc;
+        let pdfArrayBuffer;
+        let renderTask = null;
+
+        function handlePDFOption() {
+            const option = document.getElementById('pdfOption').value;
+            document.getElementById('uploadSection').style.display = option === 'upload' ? 'block' : 'none';
+            document.getElementById('imageSection').style.display = 'block';
+            document.querySelector('.canvas-container').style.display = 'block';
+        }
+
+        async function loadPDF() {
+            const fileInput = document.getElementById('pdfUpload').files[0];
+            if (!fileInput) return;
+            
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(fileInput);
+            reader.onloadend = async function () {
+                pdfArrayBuffer = reader.result;
+                loadedPdfDoc = await PDFLib.PDFDocument.load(pdfArrayBuffer);
+                const numPages = loadedPdfDoc.getPageCount();
+                
+                const pageSelect = document.getElementById('pageSelect');
+                pageSelect.innerHTML = '';
+                for (let i = 0; i < numPages; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `Page ${i + 1}`;
+                    pageSelect.appendChild(option);
+                }
+                renderPDFPage();
+            };
+        }
+
+        async function renderPDFPage() {
+            if (renderTask) {
+                await renderTask.cancel();
+            }
+
+            const pageNumber = parseInt(document.getElementById('pageSelect').value) + 1;
+            const pdfCanvas = document.getElementById('pdfCanvas');
+            const pdfCtx = pdfCanvas.getContext('2d');
+            
+            const pdf = await pdfjsLib.getDocument({ data: pdfArrayBuffer }).promise;
+            const page = await pdf.getPage(pageNumber);
+            const viewport = page.getViewport({ scale: 1.5 });
+            
+            pdfCanvas.width = viewport.width;
+            pdfCanvas.height = viewport.height;
+            
+            const renderContext = {
+                canvasContext: pdfCtx,
+                viewport: viewport
+            };
+            renderTask = page.render(renderContext);
+            await renderTask.promise;
+        }
+
+        function previewImage() {
+            const file = document.getElementById('imageInput').files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const img = new Image();
+                img.onload = function () {
+                    const imageCanvas = document.getElementById('imageCanvas');
+                    const imgCtx = imageCanvas.getContext('2d');
+                    
+                    imageCanvas.width = document.getElementById('pdfCanvas').width;
+                    imageCanvas.height = document.getElementById('pdfCanvas').height;
+                    imgCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+                    
+                    imgCtx.drawImage(img, parseInt(document.getElementById('xPos').value), imageCanvas.height - parseInt(document.getElementById('yPos').value), img.width / 2, img.height / 2);
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function processPDF() {
+            const { PDFDocument, rgb } = PDFLib;
+            if (!loadedPdfDoc) {
+                alert("Please upload a PDF file.");
+                return;
+            }
+            const pdfDoc = loadedPdfDoc;
+
+            const file = document.getElementById('imageInput').files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.readAsArrayBuffer(file);
+                reader.onload = async function () {
+                    const imageBytes = new Uint8Array(reader.result);
+                    const image = await pdfDoc.embedJpg(imageBytes).catch(async () => await pdfDoc.embedPng(imageBytes));
+                    const selectedPageIndex = parseInt(document.getElementById('pageSelect').value);
+                    const page = pdfDoc.getPage(selectedPageIndex);
+                    
+                    const x = parseInt(document.getElementById('xPos').value);
+                    const y = parseInt(document.getElementById('yPos').value);
+                    const imgDims = image.scale(0.5);
+
+                    page.drawImage(image, {
+                        x,
+                        y,
+                        width: imgDims.width,
+                        height: imgDims.height,
+                    });
+
+                    const pdfBytes = await pdfDoc.save();
+                    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'modified.pdf';
+                    link.click();
+                };
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Editor</title>
+    <script src="https://unpkg.com/pdf-lib"></script>
+</head>
+<body>
+    <h2>Upload and Modify PDF</h2>
+    
+    <input type="file" id="pdfUpload" accept="application/pdf">
+    <button onclick="loadPDF()">Load PDF</button>
+    <br><br>
+    
+    <label>Page:</label>
+    <select id="pageSelect"></select>
+    <br><br>
+    
+    <label>Attach an Image:</label>
+    <input type="file" id="imageInput" accept="image/*">
+    <br><br>
+    
+    <label>X Position:</label>
+    <input type="number" id="xPos" value="50">
+    <label>Y Position:</label>
+    <input type="number" id="yPos" value="300">
+    <br><br>
+    
+    <button onclick="processPDF()">Save PDF</button>
+    
+    <script>
+        let pdfDoc;
+
+        async function loadPDF() {
+            const fileInput = document.getElementById('pdfUpload').files[0];
+            if (!fileInput) {
+                alert("Please upload a PDF file.");
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(fileInput);
+            reader.onload = async function () {
+                pdfDoc = await PDFLib.PDFDocument.load(reader.result);
+                const numPages = pdfDoc.getPageCount();
+                
+                const pageSelect = document.getElementById('pageSelect');
+                pageSelect.innerHTML = '';
+                for (let i = 0; i < numPages; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `Page ${i + 1}`;
+                    pageSelect.appendChild(option);
+                }
+            };
+        }
+
+        async function processPDF() {
+            if (!pdfDoc) {
+                alert("Please load a PDF first.");
+                return;
+            }
+            
+            const file = document.getElementById('imageInput').files[0];
+            if (!file) {
+                alert("Please select an image.");
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = async function () {
+                const imageBytes = new Uint8Array(reader.result);
+                const image = await pdfDoc.embedJpg(imageBytes).catch(async () => await pdfDoc.embedPng(imageBytes));
+                
+                const selectedPage = pdfDoc.getPage(parseInt(document.getElementById('pageSelect').value));
+                const pageHeight = selectedPage.getHeight();
+                const x = parseInt(document.getElementById('xPos').value);
+                const y = parseInt(document.getElementById('yPos').value);
+                
+                const imgDims = image.scale(1);
+                selectedPage.drawImage(image, {
+                    x: x - imgDims.width / 2,
+                    y: pageHeight - (y + imgDims.height / 2),
+                    width: imgDims.width,
+                    height: imgDims.height,
+                });
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'modified.pdf';
+                link.click();
+            };
+        }
+    </script>
+</body>
+</html>
