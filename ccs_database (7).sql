@@ -1,0 +1,942 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 09, 2025 at 07:08 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `ccs_database`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activityreports`
+--
+
+CREATE TABLE `activityreports` (
+  `id` int(255) NOT NULL,
+  `activity_title` varchar(255) NOT NULL,
+  `academic_year` varchar(255) NOT NULL,
+  `activity_date` date NOT NULL,
+  `activity_description` text NOT NULL,
+  `posted_by` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `uploaded_at` text NOT NULL,
+  `archive` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `activityreports`
+--
+
+INSERT INTO `activityreports` (`id`, `activity_title`, `academic_year`, `activity_date`, `activity_description`, `posted_by`, `file_name`, `uploaded_at`, `archive`) VALUES
+(1, 'test123', 'test', '2025-04-22', 'asdsadada123', 'test123', '', '2025-04-24 15:21:52', 1),
+(2, 'test', 'tet', '2025-04-22', 'test', 'test', '', '2025-04-24 15:32:06', 0),
+(3, 'test', '20-21', '2025-05-14', 'dssgfdf', 'test', 'CCS-Department.pdf', '2025-05-07 10:22:37', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_linkages`
+--
+
+CREATE TABLE `company_linkages` (
+  `id` int(255) NOT NULL,
+  `company_name` text NOT NULL,
+  `company_description` text NOT NULL,
+  `company_website` text NOT NULL,
+  `company_telno` text NOT NULL,
+  `company_email` text NOT NULL,
+  `company_address` text NOT NULL,
+  `contact_person` text NOT NULL,
+  `contact_person_email` text NOT NULL,
+  `contact_person_telno` text NOT NULL,
+  `date_added` text NOT NULL,
+  `archive` tinyint(1) NOT NULL DEFAULT 0,
+  `uploaded_at` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `company_linkages`
+--
+
+INSERT INTO `company_linkages` (`id`, `company_name`, `company_description`, `company_website`, `company_telno`, `company_email`, `company_address`, `contact_person`, `contact_person_email`, `contact_person_telno`, `date_added`, `archive`, `uploaded_at`) VALUES
+(1, 'University of Perpetual Help System DALTA ', 'UPHMO123', 'http://UPHMO123', 'UPHMO123', 'UPHMO@UPHMO123', 'UPHMO123', 'UPHMO123', 'UPHMO@UPHMO', 'UPHMO123', '2025-04-24 15:34:15', 0, '2025-04-24 15:34:15'),
+(2, 'University of Perpetual Help System DALTA ', 'UPHMO', 'http://UPHMO', 'UPHMO', 'UPHMO@UPHMO', 'UPHMO', 'UPHMO', 'UPHMO@UPHMO', 'UPHMO', '2025-04-24 16:02:40', 0, '2025-04-24 16:02:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `conceptpapers`
+--
+
+CREATE TABLE `conceptpapers` (
+  `id` int(255) NOT NULL,
+  `concept_title` text NOT NULL,
+  `concept_date` date NOT NULL,
+  `concept_description` text NOT NULL,
+  `academic_year` varchar(255) NOT NULL,
+  `concept_type` varchar(255) NOT NULL,
+  `concept_resource_speaker` varchar(255) NOT NULL,
+  `concept_evaluation_rating` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `uploaded_at` text NOT NULL,
+  `archive` int(1) NOT NULL DEFAULT 0,
+  `status` text NOT NULL DEFAULT 'Pending',
+  `rejection_reason` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `conceptpapers`
+--
+
+INSERT INTO `conceptpapers` (`id`, `concept_title`, `concept_date`, `concept_description`, `academic_year`, `concept_type`, `concept_resource_speaker`, `concept_evaluation_rating`, `file_name`, `uploaded_at`, `archive`, `status`, `rejection_reason`) VALUES
+(1, 'test123', '2025-04-24', 'test', 'test123', 'Enrichment', '123', 'test', 'CCS-Department.pdf', '2025-04-24 12:50:53', 1, 'Rejected', 'ndfjiobndfibidfjklngsdgjksdfniosdiofgdnsignsdigfisdgnfidsgniosd'),
+(2, 'test12345', '2025-04-25', 'dsadadasdwa', 'test12345', 'Enrichment', 'test12345', '1231321', 'bjmp.pdf', '2025-04-25 12:26:53', 0, 'Approved', NULL),
+(3, 'test1234567890', '2025-05-06', 'dasasds', 'test12345', 'Enrichment', 'test12345', '1231321', 'NIHONGO.pdf', '2025-05-06 08:15:38', 0, 'Approved', 'dsafdfdsf'),
+(4, 'test123453454356654643', '2025-04-30', 'dsad', 'test12345', 'qwer', 'test12345', 'test', '', '2025-05-07 16:42:09', 0, 'Rejected', 'dfjsiogfdgdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `funds`
+--
+
+CREATE TABLE `funds` (
+  `id` int(11) NOT NULL,
+  `balance` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `funds`
+--
+
+INSERT INTO `funds` (`id`, `balance`) VALUES
+(1, 30000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_activity_reports`
+--
+
+CREATE TABLE `logs_activity_reports` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `modified_item` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs_activity_reports`
+--
+
+INSERT INTO `logs_activity_reports` (`id`, `type`, `modified_item`, `user`, `date`) VALUES
+(1, 'Add', '2025-04-24 15:21:52', 1, '2025-04-24 07:21:52'),
+(2, 'Modify', '2025-04-24 15:21:52', 1, '2025-04-24 07:22:03'),
+(3, 'Archive', '2025-04-24 15:21:52', 1, '2025-04-24 07:22:09'),
+(4, 'Add', '2025-04-24 15:32:06', 26, '2025-04-24 07:32:06'),
+(5, 'Add', '2025-05-07 10:22:37', 1, '2025-05-07 02:22:37'),
+(6, 'Archive', '2025-04-24 15:21:52', 1, '2025-05-07 02:48:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_company_linkages`
+--
+
+CREATE TABLE `logs_company_linkages` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `modified_item` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs_company_linkages`
+--
+
+INSERT INTO `logs_company_linkages` (`id`, `type`, `modified_item`, `user`, `date`) VALUES
+(1, 'Add', '2025-04-24 15:34:15', 26, '2025-04-24 07:34:15'),
+(2, 'Modify', '2025-04-24 15:34:15', 26, '2025-04-24 07:35:33'),
+(3, 'Archive', '2025-04-24 15:34:15', 26, '2025-04-24 07:36:00'),
+(4, 'Add', '2025-04-24 16:02:40', 1, '2025-04-24 08:02:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_concept_papers`
+--
+
+CREATE TABLE `logs_concept_papers` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `modify_id` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs_concept_papers`
+--
+
+INSERT INTO `logs_concept_papers` (`id`, `type`, `modify_id`, `user`, `date`) VALUES
+(1, 'Modify', '2025-04-24 12:50:53', 26, '2025-04-24 04:51:03'),
+(2, 'Modify', '2025-04-24 12:50:53', 26, '2025-04-24 04:51:11'),
+(3, 'Modify', '2025-04-24 12:50:53', 26, '2025-04-24 04:51:14'),
+(4, 'Modify', '2025-04-24 12:50:53', 26, '2025-04-24 06:50:52'),
+(5, 'Modify', '2025-04-24 12:50:53', 26, '2025-04-24 06:51:05'),
+(6, 'Modify', '2025-04-24 12:50:53', 1, '2025-04-24 07:20:38'),
+(7, 'Approved', '2025-04-24 12:50:53', 1, '2025-04-24 07:30:37'),
+(8, 'Modify', '2025-04-24 12:50:53', 26, '2025-04-24 07:31:27'),
+(9, 'Modify', '2025-04-24 12:50:53', 1, '2025-04-25 04:35:30'),
+(10, 'Approved', '2025-04-24 12:50:53', 1, '2025-04-25 04:56:12'),
+(11, 'Modify', '2025-04-24 12:50:53', 1, '2025-04-25 04:57:13'),
+(12, 'Modify', '2025-04-24 12:50:53', 1, '2025-04-25 04:57:24'),
+(13, 'Approved', '2025-04-25 12:26:53', 1, '2025-04-25 05:22:26'),
+(14, 'Modify', '2025-04-25 12:26:53', 1, '2025-04-25 05:22:46'),
+(15, 'Approved', '2025-04-25 12:26:53', 1, '2025-04-25 05:23:01'),
+(16, 'Modify', '2025-04-25 12:26:53', 1, '2025-04-27 23:03:49'),
+(17, 'Approved', '2025-04-25 12:26:53', 1, '2025-04-27 23:04:26'),
+(18, 'Approved', '2025-04-24 12:50:53', 1, '2025-04-28 05:30:42'),
+(19, 'Modify', '2025-04-25 12:26:53', 1, '2025-04-28 05:31:54'),
+(20, 'Approved', '2025-04-25 12:26:53', 1, '2025-05-05 01:18:30'),
+(21, 'Approved', '2025-04-25 12:26:53', 1, '2025-05-05 07:03:38'),
+(22, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:25:54'),
+(23, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:28:20'),
+(24, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:43:18'),
+(25, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:47:19'),
+(26, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:51:09'),
+(27, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:51:46'),
+(28, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:54:21'),
+(29, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 07:54:45'),
+(30, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 08:31:25'),
+(31, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 08:32:22'),
+(32, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 08:50:47'),
+(33, 'Modify', '2025-04-24 12:50:53', 1, '2025-05-05 08:52:43'),
+(34, 'Modify', '2025-04-25 12:26:53', 1, '2025-05-06 00:13:42'),
+(35, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-06 03:23:01'),
+(36, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-06 03:23:08'),
+(37, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-06 06:29:16'),
+(38, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 02:44:08'),
+(39, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 04:23:14'),
+(40, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:26:28'),
+(41, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-07 07:35:45'),
+(42, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:36:25'),
+(43, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-07 07:36:38'),
+(44, 'Archive', '2025-04-24 12:50:53', 1, '2025-05-07 07:37:38'),
+(45, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:40:29'),
+(46, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-07 07:41:22'),
+(47, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:41:39'),
+(48, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-07 07:41:48'),
+(49, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:42:02'),
+(50, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-07 07:42:14'),
+(51, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:54:21'),
+(52, 'Approved', '3', 1, '2025-05-07 07:55:13'),
+(53, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:55:41'),
+(54, 'Approved', '3', 1, '2025-05-07 07:55:58'),
+(55, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 07:56:16'),
+(56, 'Approved', '3', 1, '2025-05-07 07:56:59'),
+(57, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 08:01:11'),
+(58, 'Approved', '3', 1, '2025-05-07 08:13:36'),
+(59, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 08:13:58'),
+(60, 'Approved', '3', 1, '2025-05-07 08:14:16'),
+(61, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 08:20:04'),
+(62, 'Approved', '3', 1, '2025-05-07 08:20:16'),
+(63, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 08:20:37'),
+(64, 'Approved', '3', 1, '2025-05-07 08:20:45'),
+(65, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 08:36:05'),
+(66, 'Approved', '3', 1, '2025-05-07 08:36:27'),
+(67, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-07 08:38:58'),
+(68, 'Modify', '2025-05-07 16:42:09', 1, '2025-05-07 08:42:33'),
+(69, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-08 03:59:04'),
+(70, 'Rejected', '', 1, '2025-05-08 04:10:01'),
+(71, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-08 06:23:14'),
+(72, 'Modify', '2025-04-25 12:26:53', 1, '2025-05-08 06:23:29'),
+(73, 'Rejected', '2025-05-06 08:15:38', 1, '2025-05-08 06:23:56'),
+(74, 'Approved', '2025-04-25 12:26:53', 1, '2025-05-08 06:24:42'),
+(75, 'Modify', '2025-05-06 08:15:38', 1, '2025-05-08 08:11:43'),
+(76, 'Approved', '2025-05-06 08:15:38', 1, '2025-05-08 08:12:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_funds`
+--
+
+CREATE TABLE `logs_funds` (
+  `id` int(11) NOT NULL,
+  `concept_id` int(11) NOT NULL,
+  `custom_purpose` varchar(255) DEFAULT NULL,
+  `amount` float NOT NULL,
+  `previous_balance` float NOT NULL,
+  `new_balance` float NOT NULL,
+  `transaction_date` text NOT NULL,
+  `transaction_type` text NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs_funds`
+--
+
+INSERT INTO `logs_funds` (`id`, `concept_id`, `custom_purpose`, `amount`, `previous_balance`, `new_balance`, `transaction_date`, `transaction_type`, `user_id`) VALUES
+(1, 0, NULL, 5000, 0, 5000, '2025-04-24 15:37:09', 'debit', 26),
+(2, 0, NULL, 5000, 5000, 0, '2025-04-24 15:37:15', 'credit', 26),
+(3, 0, NULL, 30000, 0, 30000, '2025-04-28 13:31:23', 'debit', 1),
+(4, 0, NULL, 2000, 30000, 28000, '2025-05-06 07:13:06', 'credit', 1),
+(5, 2, NULL, 2000, 28000, 30000, '2025-05-06 07:13:46', 'debit', 1),
+(6, 2, '', 2000, 30000, 32000, '2025-05-06 07:24:03', 'debit', 1),
+(7, 0, 'test', 2000, 32000, 30000, '2025-05-06 07:24:22', 'credit', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_ojt_records`
+--
+
+CREATE TABLE `logs_ojt_records` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `modified_item` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs_ojt_records`
+--
+
+INSERT INTO `logs_ojt_records` (`id`, `type`, `modified_item`, `user`, `date`) VALUES
+(1, 'Add', '2025-04-24 15:32:33', 26, '2025-04-24 07:32:33'),
+(2, 'Modify', '2025-04-24 15:32:33', 26, '2025-04-24 07:34:24'),
+(3, 'Archive', '2025-04-24 15:32:33', 26, '2025-04-24 07:36:09'),
+(4, 'Add', '2025-04-24 16:02:55', 1, '2025-04-24 08:02:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_thesis_capstone_projects`
+--
+
+CREATE TABLE `logs_thesis_capstone_projects` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `modified_item` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logs_thesis_capstone_projects`
+--
+
+INSERT INTO `logs_thesis_capstone_projects` (`id`, `type`, `modified_item`, `user`, `date`) VALUES
+(1, 'Add', '2025-04-24 12:43:28', 26, '2025-04-24 04:43:28'),
+(2, 'Add', '2025-04-24 12:46:58', 26, '2025-04-24 04:46:58'),
+(3, 'Modify', '2025-04-24 12:46:58', 26, '2025-04-24 04:47:53'),
+(4, 'Archive', '2025-04-24 12:46:58', 26, '2025-04-24 04:48:19'),
+(5, 'Archive', '2025-04-24 12:43:28', 26, '2025-04-24 04:49:30'),
+(6, 'Modify', '', 1, '2025-05-05 01:11:14'),
+(7, 'Modify', '', 1, '2025-05-05 01:12:44'),
+(8, 'Modify', '', 1, '2025-05-05 08:08:24'),
+(9, 'Modify', '', 1, '2025-05-06 00:01:29'),
+(10, 'Modify', '', 1, '2025-05-06 00:01:31'),
+(11, 'Modify', '', 1, '2025-05-06 00:01:43'),
+(12, 'Modify', '', 1, '2025-05-06 00:02:11'),
+(13, 'Modify', '', 1, '2025-05-06 00:06:59'),
+(14, 'Modify', '', 1, '2025-05-06 00:07:00'),
+(15, 'Modify', '', 1, '2025-05-06 00:07:01'),
+(16, 'Modify', '', 1, '2025-05-06 00:07:01'),
+(17, 'Modify', '', 1, '2025-05-06 00:07:01'),
+(18, 'Modify', '', 1, '2025-05-06 00:07:01'),
+(19, 'Modify', '', 1, '2025-05-06 00:13:27'),
+(20, 'Modify', '', 1, '2025-05-06 00:13:31'),
+(21, 'Modify', '', 1, '2025-05-06 00:13:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs_user`
+--
+
+CREATE TABLE `logs_user` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `modified_item` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ojtrecords`
+--
+
+CREATE TABLE `ojtrecords` (
+  `id` int(255) NOT NULL,
+  `ojt_full_name` varchar(255) NOT NULL,
+  `ojt_company` varchar(255) NOT NULL,
+  `ojt_description` text NOT NULL,
+  `ojt_email` varchar(255) NOT NULL,
+  `ojt_address` varchar(255) NOT NULL,
+  `ojt_telno` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `uploaded_at` text NOT NULL,
+  `archive` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ojtrecords`
+--
+
+INSERT INTO `ojtrecords` (`id`, `ojt_full_name`, `ojt_company`, `ojt_description`, `ojt_email`, `ojt_address`, `ojt_telno`, `file_name`, `uploaded_at`, `archive`) VALUES
+(1, 'test', 'University of Perpetual Help System DALTA ', 'test', 'test@test', 'test', 'test', '', '2025-04-24 15:32:33', 0),
+(2, 'test', 'University of Perpetual Help System DALTA ', 'test', 'test@test', 'test', 'test', '', '2025-04-24 16:02:55', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thesiscapstoneprojects`
+--
+
+CREATE TABLE `thesiscapstoneprojects` (
+  `id` int(255) NOT NULL,
+  `projecttype` text DEFAULT NULL,
+  `projecttitle` text DEFAULT NULL,
+  `projectdescription` text DEFAULT NULL,
+  `projectcategory` text DEFAULT NULL,
+  `projectyear` year(4) DEFAULT NULL,
+  `projectproponents` text DEFAULT NULL,
+  `projectrecommendation` text DEFAULT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `uploaded_at` text NOT NULL,
+  `archive` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `thesiscapstoneprojects`
+--
+
+INSERT INTO `thesiscapstoneprojects` (`id`, `projecttype`, `projecttitle`, `projectdescription`, `projectcategory`, `projectyear`, `projectproponents`, `projectrecommendation`, `file_name`, `uploaded_at`, `archive`) VALUES
+(1, 'Capstone Project ', 'Populationalysis: Information System Using SMS Notification For DSWD Indigent Benificiaries In Barangay Medicion I-B', 'To develop a system with the following modules: Account Management Module, Dashboard Module, History Log Module, Inactive Beneficiaries Module, Security Module, SMS Notification Module & finally a Validation Module', 'Client Based', '2024', 'Kyle Albert G. Briones, Angelo A. Calong, Angelo Gabrielle D. Rodriguez.', 'The proponents of this study recommended the following modules  to be studied and implemented: Account Management Module, Dashboard Module, History Log Module, Inactive Indigent Benfeciaries Module, SMS Notification Module, Security Module, Validation Module. Try different example test automation.', 'tie.png', '', 0),
+(2, 'Capstone Project ', 'Emocare: A Guidance Counselor Or-Driven Mental Health Support System Using Open AI Integration ', 'To design & develop an intuitive & user-friendly web-based interface for Emocare.  To develop a dashboard for the guidance counselors to display student data & provide support. To ensure Data Privacy & Security. To develop a report generation feature with a data analytics feature. To evaluate the system software based on ISO 25010: 2011 : Software Quality Standards such as Functionality, Security, Portability, & Usability. To develop using Visual Studio Code as the IDE & integration of OpenAI', 'Client Based', '2024', 'Billy John C. Arre Marc Geoffrey P. Baon Miguel Rian R. Ducut ', 'The proponents of this study recommended the following: Develop an independent mobile application for the system, individualize results for easy access to the councelor & summarize the problems of user complaints individually, regularly conduct security audits to identify & address potential vulnerabilities. Provinding, comprehensive training, investigating student & AI using voice or image- based input, consider using machine learning models.', '', '', 0),
+(3, 'Capstone Project ', 'Master Soft: A Smart Based Student Attendance Information  System Using RFID -Based Objecti Detection In IOT For Senior High School Department Of UPHSD-MOLINO', 'To create a system that uses a data-multidisciplinary approach to analyze records & generate an attendance report thoroughly & methodically. To use an RFID for communicating with RFID tags & extending its scan range to read the data accurately. To develop data protection for students using the RSA algorithm.  To develop a system using RFID for the front & back-end develop using JavaScript & Firebase for storing databases. To implement an SMS system that can send automated messages to parents or Guardians, providing them with updates on their child\'s attendance. To comply & evaluate the system software based on ISO 25010:2011', 'Client Based', '2024', 'Obrique, Shanez Angel H.', 'The proponent recommends the improvement of the efficiency of data gathering & analysis. Incorporating a teacher attendance tracking, enhancing the web page\'s UX/UI design, adjusting font readability & implementing personalized RFID cards for teachers & students to ensure precise identification.', '', '', 0),
+(4, 'Thesis Project ', 'E-Feedback Mo: Employee Performance Evaluation System With Artificial Intelelligence For Human Resources Department Of UPHSD-MOLINO ', 'To create a prive login module for the e-Feedback Mo evaluation system, accessible only to college professors., deans, chairpersons, & the human resources Department. To design a user friendly website & efficient evaluation system for easy input & management of teacher evaluation grades. To create a web based system that uses the OpenAI completion Algorithm to offer innovative & contextually relevant responses to user evaluations.  Assesing the integrated system using the ISO 2520:2011. ', 'Client Based', '2024', 'Panes, King Lorgil G. Santos, Alwin A. Navvaro, Roiz Van H.', 'The proponents recommended, implementing an auto save feature for inputting evaluation data, reducing the risk of data loss in case of connectivity issues or accidental page closure. Establish a documentation process to track & demonstrate asherence to each quality standard. Perform regular security audits to identify potential vulnerabilities & ensure that encryption methods & flask security modules are up to date. Incorporate AI algorithms that can forecast trends based on past evaluation data, helping HR & deans identify areas of improvement & patterns.', '', '', 0),
+(5, 'Capstone Project ', 'Optimizing Pharmacy; Integrating SMS Notification, POS, Inventory Management And Enhanced Efficiency ', 'To develop an optimized Pharmacy Management System by integrating SMS Notifications, Point of Sale (POS), and Inventory Management Systems. This comprehensive integration aims to enhance the overall efficiency, communication, and operational processes within the pharmacy, ultimately contributing to a more streamlined and effective management system.', 'Start Up', '2024', 'Cedric James V. Gulanes Felchrist Mae T. Vios Grant Christian L. Reoyan Dominic S. Gaspar ', 'Based on the findings and conclusions of the research, the system can develop into a more effective and user-friendly system that is in line with constantly evolving needs of pharmacy operations. The following recommendations are made for improving this study.', '', '', 0),
+(6, 'Capstone Project', 'REMS-SRES: Record Management System with Smart Record Searching for The Office of the Local Civil Registry of the Government City Hall of Bacoor', 'To design the system with the following features, data encoding, printing & releasing of civil registry documents, backup and restore module, data entry for muslims & indigenous peoples, a smart record searching, dashboard module, report generation module.', 'Client Based', '2024', 'Ginoel Tracy Salvacion, Hans Alerace Siloterio, Kim Alber Palomares, Katherine Joy Torio', 'The researchers recommends a record management system that handles scanned copies of official documents, integration of third-party library UIs for alert functions, enhance the searching capabilities, & research into secure cloud based record management.', '', '', 0),
+(7, 'System Integration and Architecture', 'Enhancing Map Accuracy on Molino Road: An AI-Driven Approach to Local Business Recogniton ', 'The main objective of this study is to develop an AI-driven application that enhances map accuracy by identifying and updating local business listings along Molino Road.', 'Start Up ', '2024', 'Devera, Allen james G. \r\nGaqui, Kim Christian C. \r\nOdvina, Marenella Reggietter M. ', 'The proponents, suggests expanding the training dataset for the YOLOv11 model by including a more diverese set of images, adaptive angle adjustmnet for street viewing, automation of creation of KML file, sytem optimization, geographic scope expansion.', '', '', 0),
+(8, 'System Integration and Architecture', 'E-Council: Integrated Student Council Management Sytem Powered by AI', 'The general objectives of this study is to design and develop and E-Council: An Integrated Student Council Management System Powered by Artificial Intelligence for the JPCS council and CCS-SC at University of Perpetual Help System Dalta Molino Campus  that will benefit the student council officers, faculty and staff.', 'Client Based', '2024', 'Cantara, Michael Angelo R. Pinon, Augustin Lorenz C. Puyat, Chrissanta Joy Erica C.', 'Refine the AI integration for more accurate and consisten resullts in the concept paper, and minutes of the meeting modules. Investigate ways to minimize AI hallucinations, by experimenting with different prompts, and applying different techniques.', '', '', 0),
+(9, 'System Integration and Architecture', 'TruthGuard:An A-Powered System for Bias Detection and Fact-Checking to Promote Transparency in Philippine Political Journalism ', 'To develop, a detector page that allows users to submit article links or snippets of political news for bias detection and fact-checking analysis, to create a real-time bias and factuality scoring system using Google\'s Gemini API, enabling analysis of language for bias and verification of factual claims, To implement a history page that stores past analyses, allowing users to review the bias and factuality score of previously analyzed articles, to develop a search and filter functionality within the history page to help users efficiently locate and sort past article analyses, ', 'Start Up', '2024', 'Dela Cuesta, John Lloyd E.\r\nGutierrez, Patrick Kyle E.\r\nLontoc, Byron M.', 'To further improve and expand TruthGuard, the following enhancements are suggested, multimedia support: add features to analyze bias and accuracy in videos and audio content, multi-language support: extend the system support multiple languages, cateringto diverse users, continuous training: regularly update the AI mode with the new data for improved accuracy and reliability., mobile application: develop a mobile app for greater accessbility and ease for use, these ehancements will ensure TruthGuard remains relevant and impactful in promoting transparent and accurate journalism.', '', '', 0),
+(10, 'Systm Integration and Architecture', 'AI - ENHANCED SERVICES: Automating Students Request Ad Services In Computer College Studies In University Of Perpetual Help System Dalta-Molino Campus', 'The primary objectives of this study is to develop and implement an AI-enhanced system for automating tudent requests and services at the Computer College of the University of perpetual Help Molino. This system aims to improve operational efficency, accuracy and overal effectiveness in managing student services.', 'Client Based', '2024', 'Portalito, Judith Grace M. Miranda, Alliyah Angela G. Manjares, Nathalie Jane M. Cirunay, Pamela Ashley ', 'To enhance the AI-Enhanced Services System, several improvements are recommended. First, priotize robust data securirty measures, including encryption, access control and clear data privacy policies to safeguard sensitive information. Second, expand the system\'s capabilities to handle more coplex and ambiguous quaries effectively. Third, integrate the AI system with campus platforms, such as learning management and student portal systems to streamline access to resources. Addidtionally, regular updates should be implemented to ensure the sytem remains efficient, accurate and aligned with the user needs. Finally, efforts to improve the user interface and experience, such as adding  voice recognition and adaptive features will further enhance student engagement and satisfaction. ', '', '', 0),
+(11, 'System Integration and Architecture', 'Optimizing City Traffic: How smart traffic lights enhance efficiency', 'The study aims to improve traffic management in Bacoor, Cavite by reducing congrestion and enhancing the overall efficiency for pedestrians, drivers and commuters through the use of a mobile application for real-time traffic notificatios and guidance for traffic enforcers. ', 'Client Based', '2024', 'Del Rosario, Francesca Denise R. Francisco, Elisha Jean P. Fuerzas, Paul Bernard R. ', 'These proposed enhancements aim to improve the app\'s usability, efficency and the value it provides to its users. Implementing these charges would result in a more seamless real-time and location aware expireince further increasing user satisfaction. ', '', '', 0),
+(12, 'System Integration and Architecture ', '(Mr.Write) Handwriting Recognition, Grammar Detection, and AI Checker', 'To develop an efficient handwriting recognition feature that accurately converts handwritten notes into editable digitable text, reducing manual transcription efforts and improving accessbility, grammar style feedback: to provide real-time grammar, punctuation, and style correction for both handwritten and typed text, allowing uses to improve their writing on the spot, AI checker for content originality: to develop AI-based checker that can instantly compare both and handwritten and typed work against a vast database of existing content to ensure originality and prevent dishonesty.', 'Start Up', '2024', 'Hewald III, Antonio S.\r\nIgnacio, Aljun P.\r\nSantos, Jean Alexis L.', 'Integration of Multilingual Support: enhance the system to support multiple languages for handwriting recognition and grammar checking. This would expand the user base and accomodate non-English, real-time processing:implement real-time handwriting recognition through camera input or stylus-based  input for tablets. This would allow users to see the text conversion dynamically as they write.', '', '', 0),
+(13, 'System Integration & Architecture ', 'AI - Powered Customer Support Chatbot for: Hardware Store', 'Develop a Web Platform: Build a web application that allows hardware store owners to create accounts, upload inventory information, and monitor customer interactions. Implement AI-Powered Chatbot: Create & Deploy an AI chatbot capable of addressing client questions about hardware products, such as technical specifications, availability, & instructions. Ensure 24/7 availability. Provide consistent & accurate responses.Handle multiple customers dimutaneously. Nhance scalability for multiple stores. Improve staff efficiency.', 'Start Up', '2024', 'Dula, Dexter G.  Ursal, Jame Bryan A.  Valeriano, Mark Reynold O.', 'The proponents recommended expanding the system to support multiple departments, introduce multi-store support, implement advanced AI features, integrate in depth troubleshooting assistance, add real-time inventory synchronization, enhance UI design, implement multi-language support, integrate payment & order placement, enhance reporting & analytics for store owners, optimize system performance.', '', '', 0),
+(14, 'Capstone Project ', 'CommuniSys: A Cloud Based Information Service for Barangay Buhay Na Tubig ', 'To create a module that keeps residence records, such as personal data with ethical considerations, complaints, suggestions, recommendations & feedback. To allow residents to find the transaction they seek in Service Category Module containing peace & order, social welfare, & business transactions. To create an Account module that secures the system using login & has accessibility from barangat officials to staff. To provide local storage of all barangay transactions that can be acessed 24/7. ', 'Client Based', '2023', 'Acabado, Makayla Cheyenne Dyyianquin, Joseph Carlo C. Odvina, Rejienah Marie M.', 'The proponents reccmmends make it user friendly for users, ID Scanner system for Valid Id of the customer that proves their legitimacy. A short message service (SMS) notification, for a checkup appointment. Data visualization & analytics of: Resident categories, age categories, summary of reports on: complaints, checkup. requesting forms. Would strongly endorse a continuatual development by future students interested.', '', '', 0),
+(15, 'Software Engineering Project', 'Online Reservation with Billing System for Bahay Nikolai Catering Services', 'To develop a webpage that will only display all the inclusion on various packages, to develop a section of the webpage that enables a user to input the necessary information about the venue, to create a billing system that will display the price cost of the customer\'s event.', 'Client Based', '2023', 'Marc, Geoffrey Baon\r\nDominic, Gaspar\r\nIgnacio, Julio Manuel\r\nRaaga, Glenn Christian\r\nReoyan, Grant Christian ', 'The team chose the phased implementation type for a couple of weeks, because it it risk less although it can be staff intensive, the team would throughly focus on maintaining the website and keep it running. The team would provide a demon on the client on how to use the website.', '', '', 0),
+(16, 'Software Engineering Project', 'Estimate System for the KM44 Automotive Care Serices ', 'To develop and estimate system for KM44 Automotive Car Services that will determine the cost of a service in a manner that includes all anticipated costs. The system will calculate an approximation of the cost since estimation consists of factors such as labor, time, products, materials, and tools to be used.', 'Client Based ', '2023', 'Redaja, Carlo Andres S. \r\nDucut, Miquel Rian R. Vios, \r\nFelchrist Mae T. Cayusa, \r\nKaila Nicole C. Navarro, Roiz Van H.', 'Future Researchers might use the findings of this study as a strarting point for additional research  on the KM44 Automatibe Care Services Estimate System. It will also aid them in carrying out a comparable research investigation into towards Automative Care services ', '', '', 0),
+(17, 'Software Engineering Project', 'Online Ordering and Delivery System for Mik-Mik Water Station', 'To develop an ordering system to help the business give their customers an easier and efficient way of purchasing their drinking water while at home, to intergrate delivery system that will let the water station know the specific destination of the order, made in their local area and have it delivered right at the customer\'s doorstep, to create a payment system that allows the end user to select a variety of payment options like e-wallets (GCash and Maya) or Cash on Delivery, to provide an access account. In order to prodect th client, the system protects the customer\'s access and maintains its security.', 'Client Based', '2023', 'Perdon, John Michael\r\nFadri, Fernan Paul\r\nArre, Bily John\r\nVito, Jaezeeh', 'The researchers would demonstrate on how to use the application and advise what technologies are suggested to run the system. The implementation will be phased for a month to avoid risk that may happen in the business. The team will be prepared in case of failure of error in the system and will fix the issue.', '', '', 0),
+(18, 'Capstone Project', 'technoloGIS: CALABARZON\'s Online Tourist Spot Locator with Online Booking System', 'To develop a sign-in & registration module for all users. To create a module to feature different tourist attractions in CALABARZON. To create a module to display the list of hotels/resorts in CALABARZON. To create a module to display the list of hotels/resorts in CALABARZON.  To create a search module that will easily find the hotel/resort that the user wants to see/visit. To create & develop a reliablr GIS for tourist spot locations. To display the customer\'s online booking.', 'Start Up', '2023', 'Jumagdao, Jomer S. Tanchoco, Micah D.S Viterbi, Maey Joyce M.', 'The recommendations are, a search button for the tourist attraction page, provide other kinds of online payment methods, provide booking details that will be sent to the user\'s email,  an SMS message about the bookings, a tentative/pencil booking for guest option, include landmarks & information about the tpurists spots or attraction, connectivity to a existing hotel/resort system for booking & payment.', '', '', 0),
+(19, 'Capstone Project', 'VitStock: A Cloud Based Sales & Inventory Management System Using QR Technollogy for Vita Felice Store', 'To develop the system it needs: a file maintenance module, a stock adjust module, sales module,report generation module, purchase order module, dashboard, QR Code Technology. To develop using HTML, CSS &  javascript for the user interface; PHP with MySQL for the backend.', 'Client Based', '2023', 'Dalumpines, Champ Mendoza, Mark Bryan Mutia, Renier James', 'The researchers recommend that the printed QR code generated by the system should also be applied to small products. Currently, the only way for the small products to be tracked is through a search function in tables. Another recommendation is a dynamic dashboard that the user can filter with different time ranges for better control of data visibility. Another recommendation is a way for the user to manually enter the retail price of a product in case there is a change in demand.', '', '', 0),
+(20, 'Capstone Project', 'Atheneum: A Research Management with Student Portal & Keyword Finder System using Searching Algorithm for the Research and Development Center of UPH-Molino', 'To develop & design the system with the following functionality and features:  A security module to secure user accounts, a database management module that can add, edit, & update records or book information. Email notification to notify the dean if some students are not visiting the library. An SMS notification to notify the borrower prior to due date. Barcode technology used in inventory & attendance monitoring. An internet usage module, a web OPAC module, online book request & delivery service.', 'Client Based', '2023', 'Pepito, John Patrick Badesancho, Rojaylene Ang, Francis Nicole', 'The developers suggest managing the system and updating the system to the client\'s needs.', '', '', 0),
+(21, '', 'Automotive Estimation System wth Billing for Joven Tire Enterprise Inc.', 'Develop a module that will enable the customer to see the estimated cost of the products or services that they require, ', 'Client Base', '2023', 'Leonardo, Vince Ludwig S.  Rafuson, Deal Farvit I. Santos, Alwin ', 'To develop an estimation system that will calculate the estimate of tthe set of products and services that the customer will avail and print for the customer the estimated cost of their availed products and services. ', '', '', 0),
+(22, 'Software Engineering Project', 'Student Record Management System For Health Services of UPHSD Molino ', 'To develop a record management system for health services of University of Perpetual Help Molino students that will lessen the risk of exposure and physical contact.', 'Client Base', '2023', 'Panes, King Lorgil G.  Sergio Armani A. Brelaz  Hans Alerace R. Siloterio Kim Albert D. Palomares', 'The proponents woul exhibit and demonstrate utiizing the application to the client for the final approval. The Proponents will supply the prerequisites to the client for the final approval. The Proponents will suppy the prequisties such as software and hardware instructions for the program to execute to prevent high risk in the implementation period, the type of deployment would be staggered for a month. Although this may take some time it is advisable to limit a substantial loss if the software fails or display an error in the live environment. When this type of problem arises, the team will prioritize the programs repair and enhancement in order to avaoid a catastrophic loss.', '', '', 0),
+(23, 'Software Engineering Project', 'Online ordering system with billing of Roicher\'s Skin Care Beauty Products', 'To develop a website that would serve as an online platform for ordering and billing.', 'Client Base ', '2023', 'Kyle albert G. Briones Angelo A. Calong Hanna Mae R. Gatchalian Cedric James V. Gulanes ', 'The developers would present and demonstate using their laptop devices to the client for the final clearance. The developers will suppy the requirements such as software and harware instructions for the program to execute. To prevent high risk in the firm, the type of deployment would be phased for a month. Although this may take some time, it is recommended to restrict the program\'s failure or display of an error. When this type of problem arises, the team will priotize the programm\'s repair and enhancement in order to avaoid a major failure. ', '', '', 0),
+(24, 'Capstone Project', 'Promethean: Smart Library Systen Innovation using RFID System with Linnear Search Algorithm.', 'To employ a RFID System & a linear search algorithm for the library of UPH-Molino. To develop a login module to ensure secure login for accounts, admin & library staff. A registration module will allow the user & new library staff to register for the system & give access to the system. A QR Code Generator that will add a new book to the system. A Qr Reader webcam will read the QR code that updates status when returning or borrowing a book. Penalty function for the book records. Report module for book records.', 'Client Based', '2023', 'General, Jeri Luther E. Mendanao, Joey T.  Mina, Jan Fouad', 'The recommendation of the proponents are the ff: A better way to conduct data gathering, improving the efficiency and a archive capability.', '', '', 0),
+(25, 'Capstone Project', 'Ezbike: Online Bicycle Rental System using Map Locator', 'To develop the Ezbike: Online Bicycle Rental System, the system must meet the following features and functionality, to develop a login and registration system for all users, to design a user interface based on user experience related to booking online, to create filters for browsing bicycles such as bike type, availability, and recently uploaded bikes to rent, to develop a system that will generate revenue repors per day, weekly and monthly, to develop a payment system that allows users to pay within system.', 'Start up ', '2022', 'Baliuag, John Lloyd, Rodriguez, Royce S.', 'To provide a variety of bicycles from which to choose, maintain its cleanliness while ensuring that the bicycles are safe to ride and thoroughly disinfected and clean, make it user-friendly for your users, have an application that allows users to locate the nearest bicycle rental, as well as book rental in advance, provide a helmet for rider\'s safety, fast application processing for the lessor, insurance of bicycle in case of stolen, I.D scanner system for valid ID of the customer that proves their legitimacy, lastly, the developers would strongly endorse the continual development of the website by those students who will come in next and take an interest in improving the initial study of bicycle rental systems using a map locator', '', '', 0),
+(26, 'Capstone Project', 'CodeVenture: Adventure Game for learning Basic Java Programming', 'To develop a text adventure game that helps the students to better understand of basic console java programming. To develop the game using html5/CSS3 & PHP with Javascript. To make 3 difficulties: easy, moderate & advanced category. To test and validate the game\'s software quality using the ISO 25010:2011', 'Start up', '2022', 'Ajoc, Kenneth Michael P. Federico, Morritz Brian M.', 'The researchers reccomend futher investigation & analyzing information.', '', '', 0),
+(27, 'System Integration & Architecture ', 'Smart Waste Sorting System Using AI', 'The primary objective of this study is to develop a Smart Waste Sorting System that leverages artifical intelligence (AI) to classify waste and provide isers with guidance for proper disposal. The system airms to simplify and improve the waste disposal process, contributing to more efficient and environmentally conscious waste management ', 'Start Up', '2022', 'Jaravata, Marco Ian Francisco, Angelo Mondragon, Angelo', 'The proponents recommend to maintain the system needed to active its system UI', '', '', 0),
+(28, 'System Integration & Architecture ', 'E-ARAL: A Low-Pressure Learning App Inspired By Social Media Dynamic To Enhance Information Reterntion.', 'Enhance studients memory Retention: Develop an application that improves students ability to remember and recall information effectively. Lower the pressure students face when learning textbooks', 'Client Based ', '2022', 'Baptista, Hannah Mae P. Del Rosario, Jan Emanuel S. Quintero, Sheila Lorraine G. ', 'To enhance the functionality of the system, files within the \'Convertibles\'  drawer should be accessible for viewing, allong users to see the contents before initiating.', '', '', 0),
+(29, 'Capstone Project', 'Accre-System: An online Accreditation System For Private Higher Education Instituion', 'Designing and developing Online Accreditation System for Private Higher Education Institutions will provide a paltform for universities and accreditors to generate transactions online.', 'Start Up', '2022', 'Saqui, Carl Joshua C. Chua, Zoe Lemuel A. ', 'The admin approval in login for security to prevent unauthorized access. File retrieval in accidentally deleted documents for every transaction.Email verification in registration for a secure transaction. ', '', '', 0),
+(30, 'System Analysis and Design', 'Expence Management System A Web-Based Portal for Collens\' Sweet Creationns', 'To be able to develop a web-based portal system that can log the file transactions in the expense management system, to be able develop a web-based portal that can generate monthly report about the file transaction in the expense management system.', 'Client Based', '2021', 'Elleazar, Elaine Cristel P. Mujar, Robbi Xian M. Romero, Jantes Michael O. Sideno, John Zeus N.', 'There will be no actual implementation training of the proposed web-based system.', '', '', 0),
+(31, 'System Analysis and Design', 'Expense Management System: A Web-Based Portal for Collen\'s Sweet Creations', 'To be able to create a web-based portal that will serve as the Expense Management System for Collen\'s Sweet Creation.', 'Client Base', '2021', 'Elleazar, Elaine Cristel P. Mujar, Robbi Xian M. Romero, James Michael O. Sideno, John  Zeus N.', 'This study will be a useful guide to the other students, especially those future developers who are i the field of computer science, especially those future developers who are in the field of computer science and any related studies that underlies with the information technology. This is for future references in connection with the system-enhancement correlated subject matters. ', '', '', 0),
+(32, 'System Anlysis Design ', 'Payroll Management System for Mcdonald\'s Bahayan Pag-Asa', 'To develop a system that will improve the process in the payroll. To preprare detailed salary record of all employees in an organization. To develop a payroll system that can calculate & run monthly payroll. To maintain employee details. To generate general payroll & salary slips.', 'Client Based', '2021', 'Ajoc, Kenneth Michael P. Chua, Zoe Lemuel A.  Passion, Kim Art M.', 'The proponents recommend testing and improvement of the system. Fixing bugs, errors and malfunctioms that occur in the future.', '', '', 0),
+(33, 'Thesis Project ', 'TRIKE: Tricycle Finder Using A Map Matching Method For GPS Based Real-Time Vehicle Location ', 'To develop a tracking module that uses a Global Positioning System (GPS) to locate the pickup location of the passenger. To develop a tracking module by the use of the Global Positioning System (GPS). To set map restriction that will only show the designated area covered by the policy of the Municipality.', 'Start Up', '2020', 'Mabolo, Mark Bryan C. Sangalang Alberto S. ', 'The devs recommended better quality assurance in deploying the app, with a live demonstration for a dry run of the app. Improving the app\'s functions with further updates.', '', '', 0),
+(34, 'Thesis Project ', 'iDesign: Online Management Information System  with Customize Furniture Design  using Dynamic Decision Making with Monte Carlo Alogorithm ', 'To design system with the following modules: Security Module, Database Module, Design Module, Report Module, Payment Module, Order Monitoring Module, Order & Sales Module. To develop the system using PHP as the open source scripting language and MySQL for storing database. To evaluate the system\'s software quality based on ISO 9126: Software Evaluation tool criteria such as Functionality, Reliability, Usability, Efficiency, Maintainability & Security. ', 'Client Based', '2019', 'Cancanidin, Ranran John,  Dionisio, Jessica Feb, Reyes, Brille Ann P.', 'The proponents of this study suggest for other researchers to add an online payment feature to the application & improving reponsiveness of the app.', '', '', 0),
+(35, 'Capstone Project ', 'PCAW: Parental Control Application For Window PC ', 'To develop & design security login features for different user access level, the ability to monitor user\'s activity, a module that will limit access to computer devices, monitor & control sites visited by the user. Create the system using Visual Basic.NET as the programming platform & Microsoft Visual Studio as the language & software dev tool to automate the system. Evaluate using ISO 9126 based on Functionality, Efficiency, Portability, Usability, Reliability & Maintainability.', 'Start Up', '2019', 'Malinis, Gerlie L.  Silva, Jose R.', 'The proponents suggests, to upgrade the system to better accommodate the concerns of parents regarding their child/children computer activities. Upgrade the PCAW to be compatible in different operating systems. Add different user access level. Implementing a module that will limiy access to computer devices. To monitor and control which sites are available to the user.  Evaluate the system using ISO 9126 based on Functionailty, Usability, reliability, & maintainability.', '', '', 0),
+(36, 'Capstone Project ', 'Perps Kiosk: Interactive Locator Guide', 'To develop a system with: a module that consists of a virtual map of the university of perpetual help system molino, displaying the exact location of every classroom & facilities, a module for the university\'s upcoming events & announcements, a module that gives guidelines for student processes & requirements. To design & develop using PHP, Mysqli, Javascript, Autocad, Unity. To evaluate using IO 9126-1 standard.', 'Client Based', '2019', 'Balbas, Milkins Brylle L. Lojares, Leonard Jay A.', 'The proponents recommend to deploy the system to any schools, & for future researcher make the map more visually goor & deploy it to a mobile application which they can include a GPS feature to detect the user\'s current location.', '', '', 0),
+(37, 'Capstone Project ', 'iTravel: An Online Booking Management and Transaction Processing System ', 'To optimize the security by having a login & logout for admin & authorized users. To create an inquiry module for domestic & international flight booking & hotel accommodation, & search modules for promos & tour packages. A module for reports, registration for authorized users, & a module for informative blog content for consumers. A maintenance & database management module for authorized users & customers. To create a software based on ISO 9126 software evaluation tool.', 'Client Based', '2019', 'Cabural, Clark Von H.  Sotaridona, Jumar G', 'The proponents recommended enhancing the system more so it can handle a faster way of handling online booking transactions. Their panelist reccomended having a direct access to the flights of all airlines to have an efficient online booking. ', '', '', 0),
+(38, 'Capstone Project ', 'NROLL: An Online  Enrrollment System For Mother Care Academy Inc.', 'To  create a system with the following functionalities: pre enrollment, record payment transaction, class sectioning, class scheduling, encoding of student grades & generating of reports. To create a module that will allow the students/pwrents to view their account pedger, student grades, & class schedule. To evaluate the system functionality, reliability, usability, efficiency & maintainability with the help of IT Profesionals & Mother Care Academy Inc. End users. ', 'Client Based', '2019', 'Revillos Jr. Gilbert C. Obaña Ralph Aldous B. ', 'The proponents recommends upgrading the system in terms of creating more sections per year level and improving the user interface of the student side.', '', '', 0),
+(39, 'Capstone Project ', 'Library Management System For UPHSD-MOILINO With Data Analytics', 'To develop & design the system with the following functionality and features:  A security module to secure user accounts, a database management module that can add, edit, & update records or book information. Email notification to notify the dean if some students are not visiting the library. An SMS notification to notify the borrower prior to due date. Barcode technology used in inventory & attendance monitoring. An internet usage module, a web OPAC module, online book request & delivery service.', 'Client Based', '2019', 'Hayashi, Mieko C. Pepite, John Patrick B.', 'The proponents recommend the following functions to be added: book tracking, RFID integration, QR code Integration.', '', '', 0),
+(40, 'Capstone Project ', 'Crop Production Monitoring With Decision Support System ', 'To create a file maintenance & database module, a module that will add a harvested area. Monitoring the specific product in a location in Bacoor Cavite. Monitoring the harvesting of crops every month. Incorporating an SMS Notification for their new campaign, programs, information, & events. To create software based on ISO 9126 software evaluation tool.', 'Client Based', '2019', 'Contado, Domingo Sandy Insigne, John Seve Magno ,Kyle Nicole', 'The developers recommend the following, continuing the development of the system, a monitoring system that will help to sustain maximum crop production & sustainable agriculture.  Enhancing the current system for the future.', '', '', 0),
+(41, 'Thesis Project ', 'Web Based Quiz Me Management System ', 'To develop and design the proposed system with the following features: A Security module by creating a user access level for the Admin. Teachers, and Students. To develop a module for posting an announcement, news and events. To develop  a Module that will store Quizzes, User Details, Scores and Events. To develop a module that will tabulate the score and ranking of contestants. To develop a module for email and sms notifaction module for the invitation, announcements and other information. System file management module.', 'Start Up ', '2019', 'David, John Paolo O. Asis, Kayle Christian Rey N. ', 'With the success of the developmeny of Web-Based Quiz Me Management System, the proponents recommend to the future researchers the following: The researchers recommend to future researchers to study and have a more creative idea on how are they going to help the users to have a better process.The researchers recommend to future researchers to study and have more idea on how are they going to secure the system to the hackerse.', '', '', 0),
+(42, 'Capstone Project ', 'Basura mo Segregate ko\"\": An Android Game Application For Proper Waste Management ', 'To develop an android game application for proper waste segregation management with the following  functionalities:  A game to educate the people to know how to segregate trash, an interactive type of game with display, user & settings modules, To create different environment such as land, nature water, to create a game with sound effects, a storyline. The project must be done in Unity, using C#, & adobe photoshop for editing the images.', 'Start Up', '2019', 'Melitante, Jaymar Rivera, Adrian Jeremy ', 'With the researcher\'s success, they recommended  implementing more dynamic teaching techniques, adding more stages or levels in the game, recommending more creative animations appealing to the younger generation. ', '', '', 0),
+(43, 'Capstone Project ', 'Attendance Monitoring And Payroll System Using Finger Print Scanner For TTC Gargaments', 'To design & develop the system using the following: a database management module, attendance monitoring, a payroll, a report that generates electronic payslip through print, biometric technology for login & logout. Designee using PHP MySQL.', 'Client Based ', '2019', 'Fuerte, Ma. Angelika T. Joanino, Christian R. ', 'The developer would like to recommend this to the future researchers when they try to create payroll system, whether it is about pay roll system or any system. ', '', '', 0),
+(44, 'Thesis Project ', 'TrimAR: Table Reservation And Interactive Menu With 3D Presentation Using Card Sorting Algortihm ', 'The general objectives of this project is to design and develop a new system called \"\"trimAR\"\": Table Reservation and Interactive Menu With 3D presentation\"\" to increase the effficiency of the services provided by the employees to the customers through better application of technolog in daily operations. ', 'Start Up ', '2019', 'Furto, Mary Joy A. Galvez Ariel A. ', 'There is possible recommendation in order to improve the study better one possibility is by having an automated table reservation the the system will automatically assign tables to the customers as well as the online payment system that will make the job wich more convenient and faster especially when in a busy place. ', '', '', 0),
+(45, 'Capstone Project ', 'BillProject: Project Management For BBDC', 'To create a Project Management System for BBDC this secure their files and lessen their time in updating and updating and retrieving their records manually.', 'Client Based', '2019', 'Juanillo, Joshua Marvin Silang, Johm Anton O.', 'With the success of the development of Project Management  System for BBDC, the proponents will conduct a survey that will help them improve the system. The proponents would like to recommend this to the future researchers  to improve the stability of the system for modification updated and the other needs to successfully function.', '', '', 0),
+(46, 'Capstone Project ', 'Integrated Hospital Management Information System for Bacoor District Hospital', 'This study aimed to determmine the functionality and effectiveness of Hospital Management and Information System for the Bacoor District  Hospital. This study wil improve the consistency of patient records which can help the Hospital to be able to produce systenatic reports and change the manual process into computerized secured pocess.', 'Client Based', '2019', 'Arciaga, Clark Louie . Yaona, Jasper Jasper M.', 'The developer would like to implement using the other cards as a means of dicsounting bills of patients. The system can only accommodate those who are philhealth members.', '', '', 0),
+(47, 'Capstone Project ', 'eBIZ: An Online Information System For the Businesses in the Province of Cavite', 'To design and develop the system with the following features & functionality: Security module that allows access for administration and users. Provide a Database that will manage the file maintenane of business, products and  the information of the users.Advertsement and marketing module that will  promote the busines to the community.SMS and Email notificaiton that notifies he users about announcements, regsitration and advertisement.', 'Start Up', '2019', 'Balinas, Ma. Febe S. Napa, Karla M.', 'The development team, suggests the continual updating of the system for the client needs,  an automated checker module for business permits, an online payment function, an announcement & live chat box.', '', '', 0),
+(48, 'Capstone Project', 'Online Information & Management System with helpdesk for barangay Molino IV', 'To create a secure login & log out module for the admin & reaidents that will have access to the system. To create a module that will allow the residents to file a complaint through the online system. To develop a module that will add & update the resident\'s information. To create a module that willreguster residents to have access to the system.', 'Client Based', '2019', 'Labatorio, Aaron James G. Enrijo, Aaron Jake D.', 'The systen should be more user friendly & should be easy to navigate & use.', '', '', 0),
+(49, 'Capstone Project ', ' Employee Performance Evalution and Ratng System Using Sentiment Analysis ', 'The objectives of this study was to design and develop an Employee Performance evaluation and rating system.', 'Start Up ', '2019', 'Baul, Jaqueline R. Enriquez, Erina Yuki G. Nabua, Quennie M.', 'Consider the findings and conclusion of the study. The following are the recommend. Enhance the system to cover other types of question beside matrix type further. Broaden the use of the system to the other companies and countries.', '', '', 0),
+(50, 'Capstone Project', 'FORBS: Online Reservation with Biling system for Franz Party Needs & Catering Services', 'To design a security module for the admin & customer. To design a database management module for the admin & packages, customer registration.  To design a billing process for the Franz Party Needs & Catering Services. To create/develop a reservation module that provides the needs of the customer. To create/develop an SMS notification for a confirmed reservation. To create/develop an Email Marketing modulr for the target customers.', 'Client Based', '2019', 'Celleros, Leny C. Julian, Dianne G. Sneño, Shiela Mae. B.', 'The proponents would like to reccomend to add more functions to the system that will make the software more beneficial, flexible & innovative to sustain the needs of future clients, business owners, & customers.', '', '', 0),
+(51, 'Capstone Project', 'An Online Polaris Information Management System for Polaris Medical Clinic', 'The study aims to develop an information management system for Polaris Medical Clinic  the would enable faster and more efficient storage, retrieval and updating of clinical records', 'Client Based', '2019', 'Borcelo, Leslie Rose Donina, Jan Nathaniel B.', 'The developer would like to recommend this to the future researchers that when they try to create a Polaris Information Management System, they should have a good time management and strong will because this kind of project is really a times consuming one. It might be considered as a demanding type of study but there is a sense of achievement at the end. It must be user friendly to understand and operate the system well.', '', '', 0),
+(52, 'Capstone Project', 'Online Alumni Management System for University of Perpetual Help Dalta-Molino Campus.', 'To obtain up to date information & analyze the data of the alumni. To develop & design the system with the following functionality featured: a security module for admin & users, a .odule that will notify alumni thru SMS, a module that will allow alumni to view/apply for a job opportunity, a module that will allow alumni to post a topic that is capable for comment & suggestion section, a module that woll allow alumni to provide informstion about their fellow deceased alumni', 'Client Based', '2019', 'Ison, Gerald Paul O. Salvador, Kenette O.', 'The developers would like to recommend to improve the system, add login choices, ad real time chat.', '', '', 0),
+(53, 'Thesis Project', 'Bon Voyage: Transportation Application for Molino-Alabang and Vice Versa Van Transportation using Map Matching Algorithm and entiment Analysis ', 'To accept bookings from regular passengers and add their reservation by by thei chosen arrival time, to develop a module that lets commuters pick their destination and save it as reference for the alerts sent to the driver, to record user\'s information in a database, including the drivers and passengers and let them manage their profiles, to develop a module that allows passengers to give feedback regarding the vehicle condition and the drivers, to records reviews in a database and check whether review are positive or negative, in which reviews may help improve the transportation sector.', 'Start Up', '2019', 'Alejandrino, Raven Ann G.\r\nCruz, Trisha Jade B.', 'One of the possible system recommendations would be installations of a CCTV (Closed Circuit Television) Camera inside every vehicle to ensure the safety of the passenger and drivers. Although one of the discussed recommendations was to check the personal information of every passenger that alights of van, may be an arising concern about data privacy breach for the passengers.', '', '', 0),
+(54, 'Capstone Project', 'ikater: Catering Service Portal ', 'The general obejctives of the study is to design and develop a catering service portal for customers and caterrs in the Province of Cavite.', 'Client Based ', '2019', 'Meneses, Joshua Erick Victor L. Peji Paul Christian B. ', 'The proponents woul like to recommend this to the future researchers who want to create a Create Service Portal and the staffs that will be handing this software package be given training on computer bases on how to use the new system ', '', '', 0),
+(55, 'Thesis Project ', 'Estiquier A Transaction Based Ticketing System for the Local Government of the City of Imus, Cavite ', 'The study\'s goal is to help community for an effcient process of the operation of the request, complaints, comments, and suggestion in Government of the City Imus Cavite', 'Client Based ', '2019', 'San Miguel, Christopher Joshua G. Ela, John Eddie B. ', 'With the sucess of the development of the web-based Transaction-Based Tickerting System, the developers recommend to the future researchers the following: The Obective of the study is to help the Community for the efficiency of the process of the requests, complaints, comments and suggestion in Gvernment of the City Imus, Cavite.', '', '', 0),
+(56, 'Capstone Project ', 'E-Sining: An Online Art Gallery System', 'The objective of this study is to develop an Online Art Gallery that wll serve as a  soul platform that will help both the artist and art buyer to purchase and transact via online.', 'Start Up', '2019', 'Biong, Ronald Jemico G. Mansibang, Rolan Kinghiz G. Suarez, John Chris D. ', 'To all the futureresearchers that will try to create online art gallery make sure it was user friendly to understand your system functionality will. We also suggest research more about art gallery or art museum to gain knowledge what flow of system you will create.  ', '', '', 0);
+INSERT INTO `thesiscapstoneprojects` (`id`, `projecttype`, `projecttitle`, `projectdescription`, `projectcategory`, `projectyear`, `projectproponents`, `projectrecommendation`, `file_name`, `uploaded_at`, `archive`) VALUES
+(57, 'Capstone Project', 'EClearance: An online student clearance for University of Perpetual Help - Molino Campus', 'To create or develop a security module for all the users of the system. To develop a file maintenance module that will allow the system to create, view, update, or delete a file within the database. To unput a signature using a pen tablet. A search interfacr to allow users to send queries. A remark/ comment section for thr signing departments to state the required documents that the students needs to accomplish. A scheduling module to allow the signing departments to schedule the students upon signing & checking their clearance. An upload interface to allow the students to upload their documents. ', 'Client Based', '2019', 'Sabangan, Fealene Mae B. Ang. Francid Nicole G.', 'The proponents, suggests improving the system to also cover the students of High school, Senior High school ,&  College department.  Extend the use of the application to other schools with the same proposal of the system.  Strengthen the security of the system by adding other validations. Maintain file maintenance of the systems to remain in good state. Use recommended pen tablet hardware for a better signature.', '', '', 0),
+(58, 'Capstone Project', 'Skill Share: An English and Math Learning Tool for Grade 4 to 6 Students', 'To develop and design the system with the following functionality and features, to develop the system using XAMPP, Sublime, PHP and google chrome web browser, to evaluate the system\'s software quality based on ISO 9126-: Software evaluation tool criteria such as Functionality, Reliability, Usability, Efficiency, and Maintanability. ', 'Start Up', '2019', 'Ferrer, James Dominic R.\r\nMalvar, Jose Nathaniel M.\r\nPerello, Patricia T.', 'In future work, the proponents recommend focusing on improving the parent -child relationship while also cultivating the child\'s performance. Also, the proponents should display the results in an analyzed form and attention along with the parent\'s guidance. No matter what outcome will the child receive, the system will inform the parent so they may guide their children. The proponents would like to recommendthe user to use only Google Chrome browser for visiting the website and use the active mobile number of the parent.', '', '', 0),
+(59, 'Capstone Project', 'IPOST: Web Based Case Management for PHILPOST Legal Department', 'To design a system with the following features and functionalities: encryption module, maintenance module, complaint screening, inspect and examine cases, to develop the system using XAMPP, Sublime, PHP and Google Chrome Web Browser, to evaluate the system using ISO9126-1 using the following criteria functionality, reliability, maintainability, portability.', 'Client Based', '2019', 'Balog Jr., Aden R.\r\nPedraza, Alvin John A.', 'When trying to create a case management system and some sort of system you plan to build or improv, the developer will recommend this to future researchers. it may take a lot of your time, but it is very rewarding and worth whilst. It must be user-friendly to make it easy to understand and to operate the system conveniently. Future researchers should be more dynamic and enthusiatic about the technological use of teaching techniques, The researchers recommend to future system developers especially to case management developement project to have more creative designsand more secured, This system help the employees make their work easier and consume lesser time.', '', '', 0),
+(60, 'Capstone Project', 'The Running Math 3D: An Android Math Game ', 'To develop an Android math game that includes arithmetic and word problem.', 'Start Up', '2019', 'Junio , Liwell Wyle B. Amarillas, Bernard Justine ', 'Since the developed game application is about arithmetic, word problems, ratio and fractions future researchers can add more difficult math courses with game developments concepts, this way there will be more diversity when it comes to learning. ', '', '', 0),
+(61, 'Capstone Project', 'CLM: Computer Laboratory Management with File Management', 'To develop a login & logout module for user & admin. To create a module that will manage & centralize the file server within the computer laboratory. To develop a class attendance module that will help the professor & laboratory custodian in monitoring the attendance of the students in each class.', 'Start Up', '2019', 'Guinto, Jade Michael D. Balasbas, Philip Joshua A.', 'The recommendation by the researchers are the improvement of the system\'s understandability, adding of unique design.', '', '', 0),
+(62, 'Capstone Project', 'E-Counselor: Online Counseling for behavioral problems', 'To create a security module. To create a content management module that contains lessons, activities, news, & announcement. To create a file maintenance module. To create an online payment module. To use PHP,and sublime. ', 'Client Based', '2019', 'Francisco, Cedric. Dela, Peter John O.', 'The researchers suggests the ff: Improving the system\'s functions, add email verification system, add login choices.', '', '', 0),
+(63, 'Thesis Project ', 'Online Cementetery Management and Geographical Infromation System Using DIJKSTRA\'S Alogirithm ', 'The general objective of the study is to develop an Online Management Geographical Information System using Dijkstra\'s Algortihm.', 'Start Up', '2019', 'Romano, Joanna T. Villaflores, Jolizza Keisen C. ', 'In this phase, the testing of the system is delivered and ready to deploy. Once the user starts navigating the system they may run into new problems that the project team will need to address. ', '', '', 0),
+(64, 'Capstone Project', 'ROBAYA: An Online Learnung Management System', 'To develop & design the system with the following features & functionalities: a security module for privacy with different user level of access for the admnistrator, student, & teacher. Database management module for managing, sorting, storing, & searchng information using MySQL. Class management module to supervise multiple classes. SMS notification module to notify parents about the student\'s test results.', 'Start Up', '2019', 'Mationg, Dayan Angelica A. Pagaduan, Dan Robert B. ', 'The proponents reccomend the continuation of the program and additional research towards the subject.', '', '', 0),
+(65, 'Software Engineering Project', 'Online Application With Scheduling And Billing For LTO Imus ', 'To create a security module that will protect the applcant\'s  data.To create a module that will handle the pictorial, examination schedule of the applicant. To create a database system that wil store all the applicants\' submitted requirements and forms. To create a payment module that will handle onnline payment. To create an email notification system for the applicant\'s schedule.', 'Client Based', '2018', 'Mico Alcala John David Claridad Joshua Virola', 'LTO  Online Application with Scheduling and Billing System is projected for 1 year. During the period of contract, corrections and enhancements will be required. Corrective maintenance will accommodate errors as reported by users. Enhancements will be submitted to improve performance and provide dditional functionality for the users.', '', '', 0),
+(66, 'System Analysis Design (SAD)', 'eDok: An Online Doctor Appointment Booking and Hospital Finder System Using Location Based Alogorithm ', 'To design a GUI: With a Security module, allows users in different access-level to use the different features & modules of the website. A file maintenance module to store information of the doctors, hospital services, employees, patients, announcements, schedules, locations & appointment status. A search engine module to locate hospitals & search for information about doctors, schedules & hospital services using location-based search algorithm.  An appointment module within the system to process the appointment booking for doctors, & hospital services.', 'Client Based', '2018', 'Asis, Kayle Christian Rey N. Baul, Jaqueline R. Enriquez, Erina Yuki G. Mationg, Dayan Angelica A. ', 'The researchers recommends the continual maintenance and development of the app.', '', '', 0),
+(67, 'Software Engineering Project', 'Management Information Systen for Artienza Funeral Corporation ', 'To design modules that: will secure the use of the system through user accounts, a module that will store customer\'s records & payment history, a module that can add, edit & update records of services & customers records, a module that will provide scheduling for the use of the chapel, a module that will enhance the accuracy & speed of generating reports.', 'Start Up ', '2018', 'Elpa, John Eddie B. David, John Paolo O. ', 'The recomendation is the  system will need to be maintained and upgraded. With future researchers to use the data provided as a basis for upgrades. ', '', '', 0),
+(68, 'Software Engineering Project', 'A Software Engeneering Project Present To University Of Perpetual  Help System Dalta ', 'To develop and design the system of the following functionality and feature, to design module that will secured logout and login of the system. To develop  a file maintenance module that will  store the council members, task, group, messages, projects, and other details. To design a module that will list the counsil tasks and projects. To design a module schedule all council meetings that will easly inform the coucil members.To design a module that will manage admin\'s functionality. To develop a module for personal messaging module in the system itself that can communicate to co-council . to develop module for creating teams that will add new team members. To develop a module that will monitor the completion of tasks and projects. ', 'Client Based ', '2018', 'Pepito, John Patrick Baldesancho. Rojaylene Ang, Francis Nicole ', 'The developers reccomends, the improvement of the system from updating the software, to making the ui of the system more dynamic and user friendly.', '', '', 0),
+(69, 'Software Engineering Project', 'Management Information System for Atienza Funeral Corporati', 'To design a model that will secure the use of the system through user accounts, to create a module that will store customer\'s records and payment history, to create a module that can add, edit and update records of service and customer\'s records, to create module that will provide scheduling for the uwe of the chapel, to develop a module that will enhance the accuracy and speed of generating reports. ', 'Client Based', '2018', 'Elpa, John Eddie B., David, John Paolo O.', 'The system will be manage by the researchers and will be manipulated by them as well. After the system is completed it will be handled over the client but researchers need to ensure that there is a back for the system created, just in case the system will be corrupted or formatted there will be a backup that can be provided. The researchers will visit the client every month to check and ensure that the system is working and properly maintained. ', '', '', 0),
+(70, 'Capstone Project', 'ePerpsManager: An Online Information Management System for UPHSD - Molino', 'To create a module that will provide a security throughout the user-access level, to design a module for account management, to develop a module for Periodic Report Management which the user could add, edit, view and update reports, to create a module for searching periodic report due with unique information or details thru summaries and history, to develop a module for viewing incoming deadline reports theu calendar, to design a module for displaying deadline countdown notification', 'Client Based', '2018', 'Buenaobra, Jomar V., Gamboa, Gian Carlo G., Magdaraog, Earl John T.', 'The developers would like to recommend to the future researchers that when you try to create a website, whether it is about IMS or any kind of system you are intended to do, you had to manage your time in making the system because it would consume most of your time if you want to have a good, acceptable and accessible to people who will use it, it must be user friendly in the sense of they will easily understand and operate the system you are doing. We would also suggest to research more on the field that are related to the system you are doing. Any information you will learn might become useful in some ways.', '', '', 0),
+(71, 'Capstone Project', 'E-Brgy 911: Barangay Alert and Rescue Application', 'To create a content management module that filters the information viewed by the Barangay officials and residents based on their access level, to design an alert module that allows residents to send a report about an incident, to develop a generate report module that allows the barangay officials to generate and print documented reports about the incident, to design an announcement module that allows the barangay officials to create announcements or updates regarding on any events that can be viewed by the residents, to design a screening module that verifies the resignated residents.', 'Client Based', '2018', 'Malveda, Romel K. Padulla, April M.', 'Improve the graphic design of the system, improve database functionality to accept large file size of picture, addition of live feedback for more accurate reporting of incident, since the system can only send pictures, future researchers can add video that can be also sent to the barangay, future researchers can make the generated reports customizable.', '', '', 0),
+(72, 'Software Engineering Project', 'An Online Reservation with Sales & Inventory System for Franz Party Needs & Catering Services', 'To create a module for the security of the system using login & logout. To design a database management module for the admin, customers & products. To develop a module that will store records/details for admin, customers & products. To create a modulr that will compute & store sales ofFranz Psrty Needs & Catering Services.', 'Client Based', '2018', 'Borcelo, Leslie Rose Doniñe Jan Nathaniel B. ', 'The researchers, suggest the maintenance of the system, adding new features that the client requests and optimizing the errors found.', '', '', 0),
+(73, 'Software Engineering Project', 'Online Sales & Inventory System for SOFIMED', 'To develop a security module that has different kind of user level which includes the admin, customer. To design a module that has a file maintenance that could add, edit, delete. To design a module that allows the customer to check on available products.  To develop a module where a customer could send a message to the owner. To create a mofule where the admin could check the log history. To create module that could generate sales report.', 'Client Base', '2018', 'Cabural, Clark Von H. Cerillo, Ronald R. Ordona, Jude Michael.', 'The reseachers suggests the maintenance and conitinious update of the program.', '', '', 0),
+(74, 'Software Engineering Project', 'An Online Scheduling and Ordering with Inventory System for Sleek AutoSpa', 'The study aims to design and develop an online scheduling and ordering with inventory system for Sleek AutoSpa.', 'Client Based', '2018', 'Cailes, Ariel B. San Miguel. Christopher Joshua G. ', 'In the implementation phase the system will be \"\"live\"\" now and be able to use by the clients and must be functional and able to solve the clients problem and  the client wants to add something for the system or wanted to upgrade tge system for their use, the Iterative model will function and create a new version of the system updated.', '', '', 0),
+(75, 'Software Engineering Project ', 'Synatxsy: Using Abstraction Algorithm', 'To create instruction modules per level of the game which specifies all the steps and information needed to complete each level successfully. To create tutorial & demonstration modules that will become an aid for teaching users the basics of programming. To design different levels of challenges together with different syntaxes for the tutorial game itself. To develop game modules which check for the correctness of answers given by the users. To create a reports module that will give the scores & levels of the users.', 'Start Up', '2018', 'Alejandrino, Raven Ann G.  Cruz, Trisha Jade B.  Furto, Mary Joy A.', 'The proponents suggests, updating the user report.  They suggest additional game levels, more kinds of characters & skins, backgrounds and even more programming languages.', '', '', 0),
+(76, 'Software Engineering Project', 'Project Management System for Manglares Coastal Resources Management Foundation, Inc.', ' To develop a module that has a secured log-in and log-out system, to design a module that adds an employee with basic information, to design a module where the user can add a project within their company, to develop a module wherein the system will report the type of project status within a specific date, to decision support module for approval of project employees, donors and equipment.', 'Client Based', '2018', 'Labatorio, Aaron James\r\nSilva, Jose Martin,\r\nUlep, Mark Louie', 'Th system team continuously monitors the performance of the system regarding the hardware and the network. 6 monts free maintenance for the Manglares Company. The team is offering a 24/7 technical assistance. 3-5 years maintenance plan/update for the clients. All maintenance and enhancement are part of continuous improvement process for the system.', '', '', 0),
+(77, 'Software Engineering Project', 'Traffic Simulator', 'To develop n Expert System that control and simulate traffic using time scheduling algorith and by applying highest to lowest rules using the mathematical notation to calculate and estemate the time distributed per lane that reduce and resolve traffic jams.', 'Start Up', '2018', 'Sobiga , Trisha F. Sangalang, Alberto S. Ravelo, Lovely Ann C. Salipot, Aljohn M. ', 'Implementation is a process of ensuring that the information system is operational. It involves constructing a new system from scratch, constructing a new system from the existing one. ', '', '', 0),
+(78, 'Software Engineering Project', 'Automated Payroll System for 10k South Concrete Mix Specialist Inc.', 'To design a security module that will secure the system using login & logout. To create a module that generate a report payslip of employee. To create a payroll that will generate & compute the salary of employee automatically. To create backup feature that will prevent loss of data. To create a timetracking module that records employee logun & logout.', 'Client Based', '2018', 'Baldicano, Kevin E.  Biong, Ronald Jamico G.  Duay, Nicole', 'The proponents suggests a continuous maintenance and updating of the system.', '', '', 0),
+(79, 'Software Engineering Project', 'Integrated Building Electronics Systems Technologes Corporation Online Scheduling and Sales System', 'To create security module for the customer and admin, to create a database module for admin, customer, products and schedule, to create a sales module wherein the customer can buy products, to create schedule module wherein the customer can set their installations date, to create a report module for products sold and schedule', 'Start Up', '2018', 'Dula, Peter John O.  Francisco, Cedric  Rivera, Adrian Jeremy ', 'The team continuously monitors the performance of he system regarding the hardware and the network. The team is offering a whole day technical assistance. All maintenance and enhancement are part of improvement process for the system', '', '', 0),
+(80, 'Software Engineering Project ', 'Time Keeping and Payroll System for Integrated ,Manufacturing Services Providers, Inc.', 'The study aimed to help a company to have an efficient and effective way of monitoring their employee\'s time keeping and payroll system to give a higher quality of service.', 'Client Based', '2018', 'Amarillas, Bernard Justine C. Balog Jr, Aden R. Juanillo, John Marvin P. ', 'The system wil be implemented if it reached 100% completion. Site Preparation is at the office of IMSPI. Personnal Training will provide hands-on expirience for the personnel who\'ll have all the access to the system. System Conversion will only be converted if the owner already has decided that theywill be using the ssytem. It will be slowly converted by the Manager who is the one in charge.Data converserion and Implementation Schedule ', '', '', 0),
+(81, 'Software Engineering Project ', 'Web Based Enrollment System for Mother care academy Inc.', 'To design and to develop a web based enrollment system for Mother Care Acedemy Inc. ', 'Client Based', '2018', 'Rovilos Jr. Gilbert C. Quino, Jhovie Kate A. Obana Raplh Aldous', 'This phase is where the proponents will code sytem. It also generates the working develop system according to the users requirements. ', '', '', 0),
+(82, 'Software Engineering Project ', 'Sikla: The Philippine Revolution (Andoid RPG Game)', 'To design a mission module that contains the storyline of the game, to create a tutorial module that would aid the user in getting used to the game\'s controls, to create an option module that contains the volume settings which will allow the users to adjust the sound of the game, as the user progresses throughout the game,  the game will create the achievements for the players while playing the game, enables the user to continue the game from where it left off using the saving module that will load the data from the user interface.', 'Start Up', '2018', 'Galvez, Ariel\r\nBalasbas, Philip Joshue\r\n', 'On our implementation plan, we are planning to release the game application on a site that could run android devices such as google play to test its availability as beta and also encourage other developers to create more games about Philippines so it coud help us promote not just the games made by the Philippines but also to promote our country\'s own history, The developers would have support for 6 months and would add patches for the game\'s other event stories, bug fixing and other updates on projectiles and stores.', '', '', 0),
+(83, 'Software Engineering Project', 'E: Sining an Online Art Gallery ', 'The general objectives of this study are to develop an Online Art Gallery to help artist and art lover who willing to buy and sell online ', 'Start Up', '2018', 'Rolan Kirghiz G. Mansibang ', 'Software maintenance is the totality of activities required to provide cost effective support to a software system.', '', '', 0),
+(84, 'Capstone Project', 'E-Merge: Crime Reporting, Disaster Adviser & Guidance Android Application', 'The objective of this study is t develop and innovate a system that will help certain authorities in terms of disasters crime and rescue operations.', 'Start Up', '2018', 'Yamio, Dune Izach G. Tolentino, Danilo P. Jr Garado, Jhon Mar B.', 'Improve the system.Make email verfication. Increase the scope avaiability of the app.', '', '', 0),
+(85, 'Capstone Project', 'Adviser\'s Recommendation Sheet', 'The general objective of the study is to design and develop an eBrgy-911: A Barangay Alert and Rescue Application that would be beneficial for the barangay officials and residents ', 'Start Up', '2018', 'Malveda, Romel K. Padulla, April M. ', 'Improve the graphic design of the system. Improve database functionality to accept large file size picture. Addition of live feedback for more accurate reporting of incident.', '', '', 0),
+(86, 'Capstone Project', 'eRecycle: Online Buy and Sell and Sell for Defective and Recyclabe Items with SMS Notification ', 'The general objective of thiis study is to create and design eRecycle: Onlince Buy and Sell of Defective & Recyclable Items with SMS Notification.', 'Start Up', '2018', 'Ornopia, Alaine Joy Villanueva, Stanley ', 'Improve the system. Make email Verification before logging in. Online Sales and payment transaction.', '', '', 0),
+(87, 'Thesis Project ', 'Aritmetique: An Android Math Game ', 'To develop an arcade game for smartphones and computers with a linear search algorithm, a database that enables the uder to continue his/her game progress & maintain records such as high scores, a tutorial for the game procedures, random spawning of number & powerup blocks, three divisions (Bronze, Silver, Gold) Division, easy controls & evaluation using ISO 9126.', 'Start Up', '2017', 'Espinosa, Renz Matthew C. Gay-Yas Edgar Allen L.  Mailat Patrick John L.  ', 'The proponents recommended expanding the scope of the app, as it was limited to basic arithmetic & algebra. Use this as a base for different subjects, science, history & higher level education. Add more creative animation & effects for the game. In app purchases once the app reaches millions of users for free.', '', '', 0),
+(88, 'Software Engineering Project', 'Online Ordering And Inventory Management System For Vayao Wax Manufacturer Incorporated', 'To design a user level Accesses for the security of the system. To create a file maintenance for handling employees, customers records & their products. To develop an online ordering module that will store customer\'s products. To design an inventory module that will remind the current stocks availability & needs.', 'Client Based', '2017', 'Garado, Jhon Mar Gregana, Chad Gerard Tan, Carl Jasper', 'The researchers recommend updating the current system with the latest software and learning materials. ', '', '', 0),
+(89, 'Thesis Project', 'Project: D.R.A.Y.B. A Driving Simulator \"\"Dunong, Respeto, Alerto ang yayabong sa Baguhang drayber\"\"', 'The obejctives of this study  is to design, develop application and prototype that will help users to driver within a simulation so there would be less casualites in the road and to impart safe driving techniques for all drivers especially the new driver.', 'Start up ', '2017', 'Baccay, John Harvey Cruz, Mary Krizza Louise De Lima, Emil John  ', 'Put more road signs found in the country and make it a high priority. Improve the user interface and replace the assets used in the system with a more realistic design. Extend the number of courses to be done by the user for a more rigorous testing. Create an open world that is likened to the map of the country.', '', '', 0),
+(90, 'Capstone Project', 'Nash V1: An online Student Management System for Imus Unida Christian School', 'To develop a module that will give user access for admin, admission staff, cashier, registrar, principal, faculty & students/parents. To create a module that will able the registrar to manage class sectioning & scheduling for student class & faculty loading. To create a module that will able the faculty members to encode student periodical grades. To create a module that will be able to generate reports such as student profile, student grades. class schedules for student, faculty, enrollment & payments.', 'Client Based', '2017', 'Bautista, Michael Angela R. Carlos, Erwin John D.  Redondo, Brian Mark R.  Romero, Marc Kyrell O.', 'The developer recomends, adding a module that will allow the system to send a message through text message on every transactions made in students account. Integrate the online enrollment system to the official website of the school. Improve user-interface.  Add a module that will allow generation of report card.', '', '', 0),
+(91, 'Capstone Project', 'eSahod: A Payroll System for TCS AutoCare Services using Biometric Technology with E-mail Notification', 'To develop a secured use acces level module log-in interface used authorize personnel, to create a file management or file maintenance module for TCS employees, to design and develop attendance login module using biometric technology, to create a module that will accurate and efficiently compute salary, to develop a module that will generate automated pay slip and will notify employees using email notification, to create a report generation module for salary per employee, attendance for employee and play slip for employee, to comply to ISO 9126-1 standards using client\'s acceptability, testing of its unctionality, Effectiveness, Accuracy and Security Tools.', 'Client Based', '2017', 'Dalmero, Joshua C. \r\nMusa, Mark Anthony N.', 'The developers woud like to recommend this to future researchers that when they try to  create a payrol system, whether it\'s about payroll system or any kind of system you are intended to do it, if you have time management you make any system you want but it would consume your time but in the end, there is a reward. It must be user friendly to understand your system as well and operate the system. We also suggest to research more about this payroll system or any field related to this system.', '', '', 0),
+(92, 'Thesis Project ', 'RIASEC & MBTI Career Assessment System with Prescriptive Analytics using Naivr Baiyes Classifier Algorithm', 'To create a database management system module for the item transaction maintenance system for inventory, to create a bin card module for receiving and issuance of items, to develop inventory system module that will monitor the status of the items, to  create a purchasing module that would forecast items to be purchased, to create a report generation module of inventory reports and purchase order.', 'Client Based', '2017', 'Almanon, Trisha Marie F.\r\nHidalgo, Rose Mae\r\nTorio, Katherine Joy T.', 'Operational planning associated with the conduct of continuing operation, campaign, or war to attain defined objectives. At the national level, it includes the development of strategy and the assignment of strategic tasks to the combatant commanders. At the ater level, it includes the developments of campaign plans to attain assigned objectives and the preparation of operation plans and operation orders to prosecure the campaign.', '', '', 0),
+(93, 'System Analysis and Design', 'Blue-Collar Job Matcher ', 'To develop a Job Seeking online system that will help Blue-Collated workers find a job in a more convenient way. ', 'Start Up', '2017', 'Alcala, Mico Christopher M. Ambayec, Deysrie G. Estanislao, Roland Paul G. ', 'Post-Implementation Evaluation Review. PIER is a tool or standard approach for evaluating the outcome of the project and determine whether the project is producing the expected benefits to the processes products or services. It enables the user to verify that the project or system has achieved its desired outcome within specified time period and planned cost It ensures that the project has met its goals by evaluating the development and management processes of the project. ', '', '', 0),
+(94, 'Software Engineering Project', 'Integrated Information Management System for HOA Officers of Metroville Subdivision', 'To design and create a Home Owners Association Management Information Sytem for Metroville Subdivision Alapan 1C Imus Cavite. ', 'Start Up', '2017', 'Yamio, Dune Izach Fetalino, Adrian Herbas, Dave ', 'The system will benefit future researchers as guide or reference in their own efforts at any proposal or project. The researchers will enhance their analysis, knowledge and technical skills. The future researchers will gain programming know and logical stimulation knowing how to eliminate the certain problem of a system. The importance of conduction this study will be their opportunity to test and prove their skills in development.', '', '', 0),
+(95, 'System Analysis and Design', 'Take A Essay Online Essay Checker', 'To create an automatic essay checker that check if the word is legit, to creat a customizable grading system for checking the essay, to generate reports of the test result of a student, to create of class creation or availability of the exam.', 'Start Up', '2017', 'Romano, Joanna T.\r\nSobiga, Trishabe F.\r\nSalipot, Aljohn M.', 'The system Take Essay will be implemented once the system is fully developed.', '', '', 0),
+(96, 'System Analysis and Design', 'Online Doctor Appointment Booking and Hospital Finder System Using Location based Search Algorith ', 'To design and develop an Online Doctor Appointment Booking and Hospital Finder System using a Location based Search Algothrim. ', 'Client Based', '2017', 'Villaflores, Jellizza Kelsen Enriquez, Erina Yuki G. Baul, Jaqueline', 'This is a proper scheduling has to developed by considering all these factors which will increase patient satisfaction. There is time built into the schedule  at the end of the hour to catch up. The scheduling allow to physicians to borrow the unscheduled time from the end of the hour or from patients with less complex problems without having to rush to get back on schedule ', '', '', 0),
+(97, 'Capstone Project', 'Perps Tracer: An Online Alumni Tracer System for the University of Perpetual Help System Dalta', 'To create & design a module that will generate the statistical results such as: education survey results & employment survey results, admin & employment survey results, admin & alumni accounts list including a printable survey. To create and design a prfiling & security module by creating a multi user level type of access & provide user accounts profile for every user.', 'Client Based ', '2017', 'Alejado, Andrew P.  Baguio, Jam Elaine M.  Durain, Durabel A.  Maristela, John Michael M. ', 'The prooponents recomends the better engagement in the feedback module, a module to convert excel file for the data analytic reports., an SMS notification to better boost the engeagement of the website.', '', '', 0),
+(98, 'System Analysis and Design', 'Traffic Light Management System using Scheduling Algorithm', 'To create a traffic simulator and use the randomization and A* Path finding Algorithm for the system,  to create a simulation of a traffic light system management using scheduling algorithm, to determine the efficiency of the proposed system versus the existing system', 'Start Up', '2017', 'Galvez, Ariel A, Sangalang, Alberto, Cacandin, Ran Ran John', 'This section describes the installation site requirements for the New Traffic Light Management System. (The installation procedures are provided separately). This section includes the following topics: required facilities or specific location to implement system, which our newly proposed will be proposed to implement inside the Bacoor are to see the difference between the existing traffic in real life before it will implemented widely.', '', '', 0),
+(99, 'System Analysis and Design', 'Online Reservation and Inventory System', 'To create/develop a security module that secure the data. To develop a database that will display the sales and the information of the customer. To create a reservation module that will handle reservation. To generate reports such as sales and reservation reports. To develop a module that will market the products and services', 'Client Based', '2017', 'Claridad, John Dave Napa, Karla  Quino, Jhovie Kate  Virola, Joshua ', 'The proponents suggest the continious maintenance of the system, fixing bugs and udating the system with better UI and faster gathering of data.', '', '', 0),
+(100, 'Capstone Project', 'E-ITS: An Online Item and  Service Monitoring System with Perfomance Evaluation ', 'To design, develop and implement an Online Inventory & Service Monitoring System with Evaluation for UPHSD-Molino', 'Start Up', '2017', 'Ambona,Paolo Exequiel C.Bitalac,Jimmy D.Jr', 'The developers would like to recommend to the future researchers that when you try to create a web site, whether it is about Services Monitoring or any kind of system you are intended to do, you had to manage your time in making the system  because it would consume moset of your time if you want to have a good acceptable and accessible to people who will use it.It must be user friendly in the sense of they will easily understand and operate thesystem you are doing. We would also suggest to research more on the field that are related to the system your doing.Any information you will learn might become useful in some ways.', '', '', 0),
+(101, 'Research Proposal', '2078 Hardware Sales and Inventory System', 'To develop a Sales and Inventory System for the 2078 Hardware', 'Client Based', '2017', 'Cainghog,Angelo Da Vinci V. Camba, Christian Oliver R. ', 'The study encourages the future developer to make the system to be networked to the other branch in a way that the beneficiaries of their study can access and monitor both branches. The study also encourages the developers to add barcode to the system so that the customer can purchase on the store faster.', '', '', 0),
+(102, 'System Analysis and Design', 'Online Sales and Inventory System ', 'The study aims to desgn and develop an Online Sales and nventory System fpr R.E Auto Glass and Aluminum that will save records of availed services of the customer and to generate daily reports and handle the said online sales transaction. To fix the problem of the owner in terms of recording the sales and orders.', 'Start Up', '2017', 'Javirer, John Rex Meneses, Joshua Erick Victor L. Peji Paul Christian B.', 'The Proponents look forward to working and enhance more than Online sales and Inventory system for the R.E Auto Glass and Aluminum Business. Back up will automatically generated every 2weeks of the month. ', '', '', 0),
+(103, 'System Analysis Design (SAD)', 'Sales & Inventory System of Victoria\'s Delicatessen', 'To create an inventory module that will monitor all the ins & outs of thr products & all of the transactions. To create a module that will generate sales report.  To create a login kodule to have security purposes.  To create a modulr that will compute & store daily & monthly report.', 'Client Based', '2016', 'Renz Anima, Kenji Edora, Karl Gonzales, John Guerrero', 'The app is to be maintained & having the relative modules updated to current world standards.', '', '', 0),
+(104, 'System Analysis and Design', 'Online E-Learning with Computer Aided Instruction for Cavite Christian School', 'To develop a class management module that will enable characters to post and update lessons for the students, to develop a quiz module that will all assess students whether they learn something or not.To develop an account module that allows the teacher to add an account for students. To develop a report module that will display results of the assessment .', 'Client Based', '2016', 'Reuben Derick Llianes Melvin Jay Eriano Grant Necia ', 'This includes application development testing instalation and evaluation. In this phase the researchers will give the system so they will know if we accomplished their provided requirments. ', '', '', 0),
+(105, 'Thesis Project ', 'Dr. Brain', 'To design an educational game that can be played by grade 1 pupils and can generate user friendly interface, reliable information and functional features. To conceptualized a game using Unifie Modelling Language (UML)', 'Start Up', '2016', 'Gallo, Joey Ann L.  Maristela, John Michael M. ', 'The proponents recommend the future researchers to further develop the game, portability to other mobile devices, have the game be adaptable to basic english grammar, basic math operations, and the ability to play online.', '', '', 0),
+(106, 'Capstone Project', 'School Portal System for Citiville Christian, Academy Inc. ', 'To develop an online content management module that will be used by School administration in keeping the CCAI upated and informed of current, upcoming and future events. To develop a module for online encoding of grades that can be viewed by students and parents/guardias anywhere and anytime. ', 'Client Based', '2016', 'Narciso, Oliver C. ', 'The proponent would like to recommend futher improvement of Citivile Christian academy portal system to have some additional features such as a face-toface interaction between the teachers and students for one-to-one tutorials, also email and sms notification when there\'s a new event posted in the portal. By the use of system, it will serve as a guide for the future developers and could enhance more from their future thesis development.', '', '', 0),
+(107, 'System Analysis and Design', 'Online Reservation for Wanderlust Travel Agency ', 'The study aims to design and develop an online reservation system for wanderlust travel agency.', 'Client Based', '2016', 'Agbayani, Rustine Louise Louise Alojado, Airah Shane Dayap, Kevin Vincent ', 'The business must have at least minimum or recommended software programs and hardware requirements to run proposed system that the proponents made. ', '', '', 0),
+(108, 'Thesis Project', 'College of Computer Studies Online Class Scheduling System ', 'To create an automated  process of class scheduling. To set specific number of student for each classrom. To design a class scheduling and time tabling system to identify faculty\'s room, time, section and subject. To determine the best  method needed in arranging class schedule. To create a sytem that  can generate report such as faculty loads reports, and class schedules per year level.', 'Client Based', '2015', 'Lageram, Einar John Dela Cruz, Alexander R. Angeles, Max Tyron B.', 'For future updates or maintenance, the system can further enhance the sytem\'s capability to provide more extensive information that department. Future developers may implement the system  not only in the College of Computer Studeis but also for entire University for the convenience that can be rendered by the institution as service to its students.', '', '', 0),
+(109, 'Capstone Project', 'Outcome-based Education Syllabus Creator', 'To create an output of the syllabus in the OBE SYllabus format of the University of Perpetual Help System Dalta. To design a syllabus creator that can be understood without difficulty, and accordingly lists all the fields of the OBE Syllabus that needs to be filled upon. To construct an Outcome-based Education Syllabus Creator that can be used and accssed at any time possible.', 'Client Based', '2014', 'Mlavas, Christine Anne Joyce T.  Malvas, Czerina Gail T.  Querubun, Mike Jayson', 'The proponents recommend, incorporating instant messaging in the system to fasten the communication between users who submits and checks the OBE syllabus which is necessary for revisions and modifications of the syllabi, a news ticker', '', '', 0),
+(110, 'Thesis Project', 'Online Reservation and Web Portal For Circle Island Resort & Hotel', 'To develop a module that will provide customers with significant discounts of saving the cost of using the phone operators, to develop an online system which will provide reservation in time, the customer receives immediate assurance that what they want is available or is not available, to develop an online system which will provide information in room availability checking, real-time updating, and full search capability.', 'Client Based', '2011', 'Salman, Nora Jasmin A, Sauqillo, Wilmar M.', 'The proponents would like to recommend the Circle Island & Hotel have an online reservation and web portal system to gain more clients and it would be very beneficial to the company. It is also recommended to use powerful hardware that would help to speed up the processing of data. The proponents would also like to recommend the good for an online reservation and web portal system that can easily catch up the eyes of the clients and think how comfortable the hotel is to stay with. Years will pass by, the Circle Island Resort & Hotel having the proponents proposed system, the company will help to grow better, to become popular and to have a lot of clients, and the proponents may never forget that feeling of plateful, but professionally speaking, having a good, user-friendly, first class, high quality fine and excellent online reservation and web portal system money is so easy for a company like the Circle Island Resort & Hotel can embrace or can have.', '', '', 0),
+(111, 'Thesis Project', 'Maternity Information System - Queens Crown Lying-in Center', 'To develop a system were you can keep and stored the patient records, to develop a system that can retrieve the complete medical history of the patient by the doctor instantly, to develop a system that can automatically compute the total amount of the services rendered that has a Philhealth discount, to develop a system that can simply search the name of the patient for their records.', 'Client Based', '2011', 'Jagunob, Eileen G., Llever, Pedro D.', 'Since the paperwork in clinic was computerized, it is recommended to make it complete electronic medical record, since the biling in maternity information system are automatically compute the total amount, it is recommended to accept credit card and the other possibilities that they can add, since the billing in the maternity information system has a Philhealth, it is recommended to have a computerized philhealth form, since the system has a new born baby medical record, it is recommended to have a computerized birth certificate form.', '', '', 0),
+(112, 'Thesis Project ', 'Legacy Of Wisdom Academy Document Express Online', 'Benefit the students and the parent in the form of them no longer exerting their effort, money and time on commuting to and from the school to request a document they need. Increase the level of convenience of students as well as parents by making it possible to request the necessary  documents through the internet anytuem and anywhere they want.', 'Client Based', '2010', 'Ephraim Paulo Hernandez', 'Future updates or maintenance, the website can further enahance its capability and to provide more extensive information about the field. Future researchers may also use this study for reference to develop and upgrade the project platform using the current technology  in their time.', '', '', 0),
+(113, 'Research Project', 'Computer Doctor: Troubleshooting and Repairing Computer ', 'To create a website that can help others to troubleshoot or repar their computer ', 'Start Up', '2010', 'Ebenezer E. Chong ', 'The system attains its expected functionality specially in the specifications and customization of the modem computer, also providing tips and building a community to interact with each other.', '', '', 0),
+(114, 'Capstone Project', 'JDM Tuner\'s Portal ', 'To develop JDM Tuner\'s portal that gives you assistance to people who loves cars and who have inquiries about car modifications.', 'Start Up', '2010', 'Roandolph J. Anacay ', 'It Is recommended for use to people who has cars or has inquiries about them so they can achieve knowledge and enahancing and maintaining their cars. ', '', '', 0),
+(115, 'Thesis Project ', 'Portal For Jesus The Anointed One Church-Cavite', 'The study aimed to develop a Web Portal that will provide information about the church.', 'Client Based', '2009', 'Manuyag, Michael Paul A.', 'The portal was being recomended to be used by Jesus the Anointed One Church - Cavite because it can be used for evangelism purpose. The upcoming events will have trailers for viewers to have an idea about celebration. Future researchers may enhance the Web Portal by making a Profile page for the Church Workers and Leaders.', '', '', 0),
+(116, 'Thesis Project', 'College Students Evaluation of Professors Performance of UPHSD-Molino', 'To lesson paperworks, to save time in tallying of the evaluation of the student, to replace the traditional professors manual evaluation into a computerized one, to have professors evaluation result submitted quickly, to lessen multiple task of room to room visitation when it comes to the evaluation paper', 'Client Based', '2008', 'Mamaril, Rose Ann C.', 'The proponents proposed system should be used by the cloient. For it will benefit them. Using this proposed system can make their work faster, easier and organized. The study also encourages the future developers to enhance projects they want to put up and for the betterment of more advance and reliable services', '', '', 0),
+(117, 'Thesis Project ', 'Metro South Medical Center (MSMC) Patients Information System', 'To develop a system that will lessen the time of the user on finding hospital information. To provide a security system. To provides information for the room  availability.', 'Client Based', '2006', 'Sharon Onquit ', 'To system need to implement in Visual Basic 6.0 and with the use of Microsoft Access for the database. The formatting and directions of the system  will need further improvement. The system required an SP6.', '', '', 0),
+(118, 'Thesis Project', 'CAI(Computer Aided Instruction) on Object Oriented Database', 'To show in formal representations the structure and properties of the object-oriented model of database design, to develop a learner-friendly system that will provide a rich-learning experience to the users.', 'Start up ', '2005', 'Quico, Mae P.', 'The software is ready for implementation. The test or output must provide more interestingly & relevant to the topic. The research will exert more time & effort to make a large-scale of her software', '', '', 0),
+(119, 'Thesis Project', 'Multimedia Presentation On Landscape Design', 'To design software that will help user with regards to Landscaping, to develop software that will teach the user in an interesting manner, to develop software that will help the user enhance their ability and knowledge with regards the landscaping designs.', 'Start up ', '2005', 'Sitchon, Janice R.', 'Add more lectures and topics with regards to landscaping, add more features and interactivity that will contribute the users learning on landscaping, uploaded at the internet, more types of landscapr designs and include all the types of plants needed and accessories for landscaping.', '', '', 0);
+INSERT INTO `thesiscapstoneprojects` (`id`, `projecttype`, `projecttitle`, `projectdescription`, `projectcategory`, `projectyear`, `projectproponents`, `projectrecommendation`, `file_name`, `uploaded_at`, `archive`) VALUES
+(120, 'Thesis Project', 'Training Kit On Red Hat Linux 9: A Beginners Approach', 'The user will learn the basic function of Red Hat Linux 9 particularly for the beginners of this operating system. The user will be able to visualize the environment of Red Har Linux 9, it will help users to visualize the environment of Red Hat Linux 9 operating system in advance. The users will learn new programming language such as Macromedia MX 6.0, because the study will be distribute with the source code. ', 'Client Based', '2004', 'Getes, Junemark M.', 'The computer science teacher will exert more effort to make the video clips presented more graphically on introduction of the topics,  to present the system more efficient, the computer science student and user should use more higher memory to load movie, based on the respondent request the system must also run in Red Hat Linux operating system.', '', '', 0),
+(121, 'test', 'test', 'fgdgdgfh\r\nhgdfjhgfhgf\r\nhgfhgfh\r\n', 'Client Based', '2001', 'test', 'fdsnjidfonigfdgfd\r\ngfdg\r\nfgdgdg\r\n', '', '2025-04-24 12:43:28', 0),
+(122, 'test2123', 'test2123', ' dsadadsada', 'Start Up', '2020', 'test2123', ' dsadsaddsasasad', '', '2025-04-24 12:46:58', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `reg_date` text NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `archive` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `role`, `username`, `password`, `full_name`, `file_name`, `email`, `reg_date`, `created_by`, `archive`) VALUES
+(1, 'Admin', 'Admin', '$2y$10$VeUHu4UW4AJCLexOQ2FjK.9hdyno9Z4iJVG2keD5gQ/NlVDFUQEZa', 'Main Admin123', '', 'gelocalong@gmail.com', '2025-03-20 12:58:33', '', 0),
+(26, 'Admin', 'testadmin123', '$2y$10$8qBnBSXRYRLcV8RnP.N51.C0nY6CcP.gOT1rBaa5h5OwQkzQlTwEe', 'L', '', 'gelocalong@gmail.com', '2025-04-24 08:07:32', 'Admin', 0),
+(27, 'Council', 'testadmin12345', '$2y$10$kgmiBcM.mpaeeYGBP39L6OD57e5rMz7P8hrVCgDbTG02SMC.eDb.G', 'L2', '', 'gelocalong@gmail.com', '2025-04-24 08:26:47', 'testadmin123', 0),
+(28, 'Faculty', 'angelo_calong', '$2y$10$DOEC0RxUskg.UWi/dlHE3OADXk02P2afEvXNzKMwXspxMmsjORoxu', 'AAC', '', 'gelocalong@gmail.com', '2025-04-28 07:00:18', 'Admin', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_logs`
+--
+
+CREATE TABLE `user_logs` (
+  `id` int(11) NOT NULL,
+  `action` text NOT NULL,
+  `user` int(11) NOT NULL,
+  `date` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_logs`
+--
+
+INSERT INTO `user_logs` (`id`, `action`, `user`, `date`) VALUES
+(1, 'Login', 1, '2025-04-24 15:20:14'),
+(2, 'Logout', 1, '2025-04-24 15:31:12'),
+(3, 'Login', 26, '2025-04-24 15:31:17'),
+(4, 'Backup Database', 26, '2025-04-24 15:36:36'),
+(5, 'Profile updated: Password changed.', 26, '2025-04-24 15:37:52'),
+(6, 'Profile updated: Password changed.', 26, '2025-04-24 15:38:02'),
+(7, 'Logout', 26, '2025-04-24 15:38:41'),
+(8, 'Login', 1, '2025-04-24 15:49:38'),
+(9, 'Login', 1, '2025-04-25 08:22:32'),
+(10, 'Logout', 1, '2025-04-25 09:18:28'),
+(11, 'Login', 1, '2025-04-25 09:20:46'),
+(12, 'Login', 1, '2025-04-25 12:24:53'),
+(13, 'Logout', 1, '2025-04-25 12:54:38'),
+(14, 'Login', 1, '2025-04-25 12:54:50'),
+(15, 'Logout', 1, '2025-04-25 14:24:32'),
+(16, 'Login', 1, '2025-04-25 15:13:45'),
+(17, 'Login', 1, '2025-04-28 06:59:44'),
+(18, 'Logout', 1, '2025-04-28 07:01:05'),
+(19, 'Login', 28, '2025-04-28 07:01:16'),
+(20, 'Profile updated: Password changed.', 28, '2025-04-28 07:02:36'),
+(21, 'Logout', 28, '2025-04-28 07:02:41'),
+(22, 'Login', 28, '2025-04-28 07:02:44'),
+(23, 'Logout', 28, '2025-04-28 07:02:47'),
+(24, 'Login', 1, '2025-04-28 07:02:52'),
+(25, 'Login', 1, '2025-04-28 13:29:02'),
+(26, 'Logout', 1, '2025-04-28 13:37:37'),
+(27, 'Login', 1, '2025-04-28 13:38:15'),
+(28, 'Login', 1, '2025-04-30 12:46:40'),
+(29, 'Backup Database', 1, '2025-04-30 12:51:12'),
+(30, 'Backup Database', 1, '2025-04-30 12:51:16'),
+(31, 'Backup Database', 1, '2025-04-30 12:51:18'),
+(32, 'Backup Database', 1, '2025-04-30 12:51:20'),
+(33, 'Backup Database', 1, '2025-04-30 12:51:22'),
+(34, 'Backup Database', 1, '2025-04-30 12:51:26'),
+(35, 'Backup Database', 1, '2025-04-30 12:51:28'),
+(36, 'Backup Database', 1, '2025-04-30 12:51:40'),
+(37, 'Backup Database', 1, '2025-04-30 12:52:22'),
+(38, 'Archive All Data', 1, '2025-04-30 12:52:46'),
+(39, 'Unarchive All Data', 1, '2025-04-30 12:52:48'),
+(40, 'Unarchive All Data', 1, '2025-04-30 13:01:44'),
+(41, 'Backup Database', 1, '2025-04-30 13:17:22'),
+(42, 'Logout', 1, '2025-04-30 14:29:19'),
+(43, 'Login', 1, '2025-05-02 07:22:20'),
+(44, 'Logout', 1, '2025-05-02 07:22:40'),
+(45, 'Login', 1, '2025-05-02 07:27:27'),
+(46, 'Login', 1, '2025-05-02 10:26:29'),
+(47, 'Login', 1, '2025-05-05 09:08:18'),
+(48, 'Login', 1, '2025-05-05 09:37:49'),
+(49, 'Login', 1, '2025-05-05 14:23:33'),
+(50, 'Logout', 1, '2025-05-05 17:27:44'),
+(51, 'Login', 1, '2025-05-05 17:29:44'),
+(52, 'Change role of testadmin12345 form Admin to Faculty', 1, '2025-05-05 17:29:54'),
+(53, 'Change role of angelo_calong form Council to Admin', 1, '2025-05-05 17:30:08'),
+(54, 'Logout', 1, '2025-05-05 17:30:35'),
+(55, 'Login', 1, '2025-05-05 17:30:41'),
+(56, 'Logout', 1, '2025-05-05 17:30:52'),
+(57, 'Login', 1, '2025-05-05 17:30:55'),
+(58, 'Logout', 1, '2025-05-05 17:30:58'),
+(59, 'Login', 1, '2025-05-05 17:31:01'),
+(60, 'Logout', 1, '2025-05-05 17:31:02'),
+(61, 'Login', 1, '2025-05-05 17:31:05'),
+(62, 'Logout', 1, '2025-05-05 17:31:07'),
+(63, 'Login', 1, '2025-05-05 17:31:11'),
+(64, 'Logout', 1, '2025-05-05 17:31:13'),
+(65, 'Login', 1, '2025-05-05 17:31:16'),
+(66, 'Change role of angelo_calong form Admin to Council', 1, '2025-05-05 17:33:15'),
+(67, 'Logout', 1, '2025-05-05 17:33:22'),
+(68, 'Login', 28, '2025-05-05 17:33:49'),
+(69, 'Logout', 28, '2025-05-05 17:34:13'),
+(70, 'Login', 1, '2025-05-05 17:34:17'),
+(71, 'Logout', 1, '2025-05-05 17:34:51'),
+(72, 'Login', 1, '2025-05-06 07:03:55'),
+(73, 'Logout', 1, '2025-05-06 07:30:11'),
+(74, 'Login', 1, '2025-05-06 07:30:35'),
+(75, 'Login', 1, '2025-05-06 14:25:38'),
+(76, 'Logout', 1, '2025-05-06 14:25:41'),
+(77, 'Login', 1, '2025-05-06 14:25:46'),
+(78, 'Login', 1, '2025-05-07 07:48:42'),
+(79, 'Login', 1, '2025-05-07 07:57:09'),
+(80, 'Backup Database', 1, '2025-05-07 08:00:53'),
+(81, 'Logout', 1, '2025-05-07 08:01:45'),
+(82, 'Login', 1, '2025-05-07 08:01:56'),
+(83, 'Logout', 1, '2025-05-07 08:03:44'),
+(84, 'Login', 28, '2025-05-07 08:03:51'),
+(85, 'Profile updated: Password changed.', 28, '2025-05-07 08:04:05'),
+(86, 'Logout', 28, '2025-05-07 08:13:22'),
+(87, 'Login', 1, '2025-05-07 08:13:26'),
+(88, 'Logout', 1, '2025-05-07 08:13:49'),
+(89, 'Login', 1, '2025-05-07 08:13:52'),
+(90, 'Logout', 1, '2025-05-07 08:13:56'),
+(91, 'Login', 28, '2025-05-07 08:13:59'),
+(92, 'Logout', 28, '2025-05-07 08:14:41'),
+(93, 'Login', 1, '2025-05-07 08:14:45'),
+(94, 'Login', 1, '2025-05-07 08:25:48'),
+(95, 'Logout', 1, '2025-05-07 08:25:58'),
+(96, 'Login', 28, '2025-05-07 08:26:08'),
+(97, 'Logout', 1, '2025-05-07 09:03:06'),
+(98, 'Login', 28, '2025-05-07 09:03:09'),
+(99, 'Logout', 28, '2025-05-07 09:09:35'),
+(100, 'Login', 1, '2025-05-07 09:09:38'),
+(101, 'Login', 1, '2025-05-07 09:29:31'),
+(102, 'Login', 1, '2025-05-07 10:12:18'),
+(103, 'Logout', 1, '2025-05-07 10:33:05'),
+(104, 'Login', 28, '2025-05-07 10:33:12'),
+(105, 'Logout', 28, '2025-05-07 10:43:18'),
+(106, 'Login', 1, '2025-05-07 10:43:21'),
+(107, 'Logout', 1, '2025-05-07 10:43:34'),
+(108, 'Login', 28, '2025-05-07 10:43:40'),
+(109, 'Logout', 28, '2025-05-07 10:43:53'),
+(110, 'Login', 1, '2025-05-07 10:43:56'),
+(111, 'Logout', 1, '2025-05-07 10:50:20'),
+(112, 'Login', 1, '2025-05-07 10:50:23'),
+(113, 'Logout', 1, '2025-05-07 10:50:27'),
+(114, 'Login', 28, '2025-05-07 10:50:31'),
+(115, 'Logout', 28, '2025-05-07 11:02:04'),
+(116, 'Login', 1, '2025-05-07 11:23:06'),
+(117, 'Login', 1, '2025-05-07 11:39:41'),
+(118, 'Login', 1, '2025-05-07 12:25:49'),
+(119, 'Logout', 1, '2025-05-07 12:26:05'),
+(120, 'Login', 1, '2025-05-07 12:34:31'),
+(121, 'Login', 1, '2025-05-07 15:05:42'),
+(122, 'Login', 1, '2025-05-08 11:58:07'),
+(123, 'Change role of angelo_calong form Council to Faculty', 1, '2025-05-08 16:13:24'),
+(124, 'Logout', 1, '2025-05-08 16:13:27'),
+(125, 'Login', 28, '2025-05-08 16:13:30'),
+(126, 'Logout', 28, '2025-05-08 16:48:09'),
+(127, 'Login', 1, '2025-05-08 16:48:12'),
+(128, 'Change role of angelo_calong form Faculty to Council', 1, '2025-05-08 16:48:19'),
+(129, 'Change role of testadmin12345 form Faculty to Council', 1, '2025-05-08 16:48:21'),
+(130, 'Change role of angelo_calong form Council to Faculty', 1, '2025-05-08 16:48:25'),
+(131, 'Change role of angelo_calong form Faculty to Council', 1, '2025-05-08 16:48:26'),
+(132, 'Change role of angelo_calong form Council to Faculty', 1, '2025-05-08 17:08:53'),
+(133, 'Logout', 1, '2025-05-08 17:08:56'),
+(134, 'Login', 28, '2025-05-08 17:10:36'),
+(135, 'Profile updated: Password changed.', 28, '2025-05-08 17:10:48'),
+(136, 'Logout', 28, '2025-05-08 17:20:13'),
+(137, 'Login', 28, '2025-05-08 17:20:20'),
+(138, 'Logout', 28, '2025-05-08 17:20:22'),
+(139, 'Login', 1, '2025-05-08 17:20:25');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activityreports`
+--
+ALTER TABLE `activityreports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `company_linkages`
+--
+ALTER TABLE `company_linkages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `conceptpapers`
+--
+ALTER TABLE `conceptpapers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `funds`
+--
+ALTER TABLE `funds`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_activity_reports`
+--
+ALTER TABLE `logs_activity_reports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_company_linkages`
+--
+ALTER TABLE `logs_company_linkages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_concept_papers`
+--
+ALTER TABLE `logs_concept_papers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_funds`
+--
+ALTER TABLE `logs_funds`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_ojt_records`
+--
+ALTER TABLE `logs_ojt_records`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_thesis_capstone_projects`
+--
+ALTER TABLE `logs_thesis_capstone_projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs_user`
+--
+ALTER TABLE `logs_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ojtrecords`
+--
+ALTER TABLE `ojtrecords`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `thesiscapstoneprojects`
+--
+ALTER TABLE `thesiscapstoneprojects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_logs`
+--
+ALTER TABLE `user_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activityreports`
+--
+ALTER TABLE `activityreports`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `company_linkages`
+--
+ALTER TABLE `company_linkages`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `conceptpapers`
+--
+ALTER TABLE `conceptpapers`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `funds`
+--
+ALTER TABLE `funds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `logs_activity_reports`
+--
+ALTER TABLE `logs_activity_reports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `logs_company_linkages`
+--
+ALTER TABLE `logs_company_linkages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `logs_concept_papers`
+--
+ALTER TABLE `logs_concept_papers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- AUTO_INCREMENT for table `logs_funds`
+--
+ALTER TABLE `logs_funds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `logs_ojt_records`
+--
+ALTER TABLE `logs_ojt_records`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `logs_thesis_capstone_projects`
+--
+ALTER TABLE `logs_thesis_capstone_projects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `logs_user`
+--
+ALTER TABLE `logs_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ojtrecords`
+--
+ALTER TABLE `ojtrecords`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `thesiscapstoneprojects`
+--
+ALTER TABLE `thesiscapstoneprojects`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `user_logs`
+--
+ALTER TABLE `user_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
