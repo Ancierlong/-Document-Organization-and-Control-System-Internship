@@ -2,4 +2,5 @@ Internship: College of Computer Studies' Document
 Organization and Control System
 
 - File management for College of Computers Studies
-- COLLECTION OF THESIS FILES
+- Collection of thesis files, activity reports and concept papers
+- With Funds computation and logs
