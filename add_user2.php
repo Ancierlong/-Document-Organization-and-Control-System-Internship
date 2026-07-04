@@ -83,8 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->isSMTP();
                 $mail->Host = 'smtp-relay.brevo.com'; // Replace with your SMTP server
                 $mail->SMTPAuth = true;
-                $mail->Username = '885c73002@smtp-brevo.com'; // Replace with your SMTP username
-                $mail->Password = 'xsmtpsib-606085b4b5cbc22dd0e9238ee4637f04edd50a94f763e9e6714d346b1ccef5ad-b3E0rDxagLM5pB8N'; // Replace with your SMTP password
+                $mail->Username = ''; // Replace with your SMTP username
+                $mail->Password = ''; // Replace with your SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS encryption
                 $mail->Port = 587; // Or your SMTP port
 
